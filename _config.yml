@@ -14,7 +14,7 @@ timezone: Asia/Shanghai
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 # url: http://yoursite.com
-url: http://flyflyfish.com
+url: https://flyingglass.github.io
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -81,13 +81,8 @@ theme: icarus
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
 - type: git
-  repo: ssh://git@doc.flyflyfish.com:10183/liuyao/blog-release.git
+  repo: git@github.com:FlyingGlass/flyingglass.github.io.git
   branch: master
-# - type: s3
-#  bucket: ailares-sites-bucket
-#  region: us-east-1
-#  aws_key: AKIAJ6XOT5ZNGU7UX5UQ
-#  aws_secret: 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
 - type: baidu_url_submitter
 
 # Sitemap
@@ -95,13 +90,6 @@ sitemap:
     path: sitemap.xml
 baidusitemap:
     path: baidusitemap.xml
-
-# baidu url
-baidu_url_submit:
-  count: 100 ## 提交最新的五个链接
-  host: flyflyfish.com ## 百度站长平台中注册的域名
-  token: VlIF4rCYb7vq9lzq ## 准入秘钥
-  path: baidu_urls.txt ## 文本文档的地址， 新链接会保存在此文本文档里
 
 # mathjax
 mathjax:
