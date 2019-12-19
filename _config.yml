@@ -87,8 +87,6 @@ deploy:
 # Sitemap
 sitemap:
     path: sitemap.xml
-baidusitemap:
-    path: baidusitemap.xml
 
 # mathjax
 mathjax:
