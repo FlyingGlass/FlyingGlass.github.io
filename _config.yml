@@ -83,7 +83,6 @@ deploy:
 - type: git
   repo: git@github.com:FlyingGlass/flyingglass.github.io.git
   branch: master
-- type: baidu_url_submitter
 
 # Sitemap
 sitemap:
@@ -94,3 +93,4 @@ baidusitemap:
 # mathjax
 mathjax:
     enable: true
+
