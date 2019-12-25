@@ -2,7 +2,7 @@
 title: minidlna配置
 date: 2018-01-13 21:48:50
 categories: 
-- [Devops]
+- [OS]
 ---
 
 #### ubuntu配置minidlna

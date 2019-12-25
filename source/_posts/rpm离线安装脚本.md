@@ -2,7 +2,7 @@
 title: rpm离线安装脚本
 date: 2019-06-17 15:48:43
 categories: 
-- [Devops]
+- [OS]
 ---
 
 *rpm离线安装脚本，主要从https://pkgs.org/下载*

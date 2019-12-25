@@ -2,7 +2,7 @@
 title: gogs配置
 date: 2018-01-13 21:26:30
 categories: 
-- [Devops]
+- [技术杂记]
 ---
 
 # 什么是 Gogs?

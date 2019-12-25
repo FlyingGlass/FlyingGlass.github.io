@@ -2,7 +2,7 @@
 title: ubuntu移动mysql的datadir
 date: 2018-11-26 18:06:20
 categories: 
-- [Devops]
+- [MySQL]
 ---
 
 ### Introduction

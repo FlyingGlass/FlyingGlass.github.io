@@ -2,7 +2,7 @@
 title: web常见漏洞
 date: 2018-02-26 15:13:29
 categories: 
-- [Web开发]
+- [SpringBoot]
 ---
 
 *项目采用springboot作为web框架，涉及到常见的漏洞，特此记录*
@@ -78,7 +78,6 @@ categories:
 
   - [验证启用了不安全的HTTP方法](http://www.cnblogs.com/qmfsun/p/6169641.html)
   - [spring boot使用内嵌的tomcat解决不安全的HTTP方法安全漏洞](http://blog.csdn.net/liuchuanhong1/article/details/76667343)
-
 
 ----
 

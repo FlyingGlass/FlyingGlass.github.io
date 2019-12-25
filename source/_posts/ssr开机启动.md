@@ -2,7 +2,7 @@
 title: ssr开机启动
 date: 2019-06-19 15:56:47
 categories: 
-- [Devops]
+- [OS]
 ---
 
 *本文主要介绍privoxy和ssr的安装和开机启动，运行系统为centos7.6，python版本为2.7.x；至于为何使用ssr，而不使用ss，主要得益于ssr具有的加密和混淆特性，其中的爱恨纠葛就不赘述，有兴趣的小伙伴可以自行搜索。*

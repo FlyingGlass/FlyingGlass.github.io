@@ -2,7 +2,7 @@
 title: homebrew配置
 date: 2018-01-13 21:41:35
 categories: 
-- [macosx]
+- [OS]
 ---
 
 #### 安装

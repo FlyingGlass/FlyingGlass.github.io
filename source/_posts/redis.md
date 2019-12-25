@@ -2,7 +2,7 @@
 title: redis配置
 date: 2018-01-13 21:22:09
 categories: 
-- [Devops]
+- [Redis]
 ---
 
 #### Prerequistes

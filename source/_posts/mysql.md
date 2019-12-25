@@ -2,7 +2,7 @@
 title: mysql配置
 date: 2018-01-13 20:48:17
 categories: 
-- [Devops]
+- [MySQL]
 ---
 
 ### centos 6.5

@@ -2,7 +2,7 @@
 title: ag安装
 date: 2018-02-26 19:16:21
 categories: 
-- [技术杂记]
+- [OS]
 ---
 
 #### Installing ag on CentOS

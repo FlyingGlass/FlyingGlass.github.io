@@ -2,7 +2,7 @@
 title: mysql5.7离线安装
 date: 2019-06-17 10:53:49
 categories: 
-- [Devops]
+- [MySQL]
 ---
 
 *本文主要介绍mysql5.7的离线安装，关于mysql的配置可以参考之前的博客[Mysql配置](<https://www.flyflyfish.com/2018/01/13/mysql/>)，离线安装中需要的rpm包可以前往https://pkgs.org/下载*
