@@ -2,7 +2,7 @@
 title: jenkins自动化部署
 date: 2018-05-11 23:32:14
 categories: 
-- [Devops]
+- [Web开发]
 ---
 
 *目前在部署blog之类的静态网站，每次修改完毕后重新部署，略显繁琐，决定通过jenkins+gitlab来进行自动化部署，至于如何安装jenkins+gitlab不是本文重点，可参考我之前的安装博文*
@@ -62,23 +62,23 @@ categories:
   ```bash
   #!/usr/bin/env bash
   echo ${WORKSPACE}
-
+  
   HTML_PATH=/var/www/html
   NGINX_USER=www-data
   NGINX=/usr/sbin/nginx
-
+  
   # Git archive zip
   cd ${WORKSPACE} && git archive --format zip --output "./output.zip" -0 HEAD
-
+  
   # Delete older and copy newer
   sudo rm -rf ${HTML_PATH} && sudo mkdir -p ${HTML_PATH} && sudo mv ${WORKSPACE}/output.zip ${HTML_PATH}
-
+  
   # Unzip
   cd ${HTML_PATH} && sudo unzip output.zip && sudo chown -R $NGINX_USER:$NGINX_USER $HTML_PATH 
-
+  
   # Nginx
   sudo $NGINX -s reload
-
+  
   # Clean
   sudo rm -rf ${HTML_PATH}/output.zip ${HTML_PATH}/reload-nginx.sh
   ```

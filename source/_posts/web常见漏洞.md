@@ -2,7 +2,7 @@
 title: web常见漏洞
 date: 2018-02-26 15:13:29
 categories: 
-- [SpringBoot]
+- [Web开发]
 ---
 
 *项目采用springboot作为web框架，涉及到常见的漏洞，特此记录*

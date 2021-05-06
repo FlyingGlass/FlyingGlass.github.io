@@ -2,7 +2,7 @@
 title: nginx转发丢失端口问题
 date: 2018-02-24 17:57:56
 categories: 
-- [Nginx]
+- [Web开发]
 ---
 
 *nginx对于redirect location的处理，会造成端口丢失的现象。针对nginx处理非80标准端口进行redirect时导致端口丢失的问题，本文主要介绍nginx的反向代理和访问目录缺失/这两种情形*

@@ -2,7 +2,7 @@
 title: hexo布局
 date: 2018-03-02 17:00:55
 categories: 
-- [技术杂记]
+- [Web开发]
 ---
 
 #### hexo布局

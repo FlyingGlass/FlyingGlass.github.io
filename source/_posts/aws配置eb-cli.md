@@ -2,7 +2,7 @@
 title: aws配置eb-cli
 date: 2018-06-02 12:25:02
 categories: 
-- [AWS]
+- [安装配置]
 ---
 
 *EB CLI 是 Elastic Beanstalk 的命令行界面，它提供了可简化从本地存储库创建、更新和监控环境的交互式命令。将 EB CLI 用作每日开发和测试周期的一部分，取代 AWS 管理控制台。*

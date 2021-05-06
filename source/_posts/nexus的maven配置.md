@@ -2,7 +2,7 @@
 title: nexus的maven配置
 date: 2018-04-26 14:44:44
 categories: 
-- [Devops]
+- [Web开发]
 ---
 
 *nexus是可以搭建maven，npm，docker，pypi私有仓库的工具，本文记录maven的安装配置*

@@ -2,7 +2,7 @@
 title: homebrew配置
 date: 2018-01-13 21:41:35
 categories: 
-- [OS]
+- [安装配置]
 ---
 
 #### 安装
@@ -37,5 +37,4 @@ source ~/.zshrc
 ```
 
 [homebrew清华大学开源使用帮助](https://mirrors.tuna.tsinghua.edu.cn/help/homebrew/ "homebrew清华大学开源使用帮助")
-
 

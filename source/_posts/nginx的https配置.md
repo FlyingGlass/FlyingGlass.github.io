@@ -2,7 +2,7 @@
 title: nginx的https配置
 date: 2018-05-27 21:38:26
 categories: 
-- [Nginx]
+- [Web开发]
 ---
 
 *在web开发中，一般使用nginx作为网关，本文介绍nginx下的https的配置*

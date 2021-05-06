@@ -2,7 +2,7 @@
 title: nexus本地仓库搭建
 date: 2018-04-08 11:27:23
 categories: 
-- [Devops]
+- [Web开发]
 ---
 
 *nexus是可以搭建maven，npm，docker，pypi私有仓库的工具，本文记录本地nexus的安装配置*

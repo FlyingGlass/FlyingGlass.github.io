@@ -2,7 +2,7 @@
 title: nginx反向代理配置
 date: 2018-05-12 10:48:41
 categories: 
-- [Nginx]
+- [Web开发]
 ---
 
 *在web开发中，nginx一般被用作网关，配置路由功能，在使用nginx进行反向代理的过程中，碰到一些配置问题，特此文记录*

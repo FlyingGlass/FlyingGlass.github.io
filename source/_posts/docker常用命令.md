@@ -2,7 +2,7 @@
 title: docker常用命令
 date: 2019-06-17 16:06:33
 categories: 
-- [Devops]
+- [Docker和K8s]
 ---
 
 ##### `docker`常用命令

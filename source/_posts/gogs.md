@@ -2,7 +2,7 @@
 title: gogs配置
 date: 2018-01-13 21:26:30
 categories: 
-- [技术杂记]
+- [安装配置]
 ---
 
 # 什么是 Gogs?
@@ -39,6 +39,6 @@ Gogs 的目标是打造一个最简单、最快速和最轻松的方式搭建自
         skip-character-set-client-handshake = true
         [mysql]
         default-character-set = utf8mb4
-
+        
         ```
 

@@ -2,7 +2,7 @@
 title: nginx代理tomcat导致css或js加载失败
 date: 2018-02-28 10:33:58
 categories: 
-- [Nginx]
+- [Web开发]
 ---
 
 *Web服务器经常会使用nginx作前置路由，在使用nginx配置Web服务器负载均衡、动静分离，会碰到设置反向代理后导致前端资源无法加载的问题*

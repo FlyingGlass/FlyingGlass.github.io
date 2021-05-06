@@ -2,7 +2,7 @@
 title: Resource和Autowired注解区别
 date: 2018-03-13 14:29:18
 categories: 
-- [SpringBoot]
+- [Web开发]
 ---
 
 *最近在使用Mybatis处理通用Mapper封装时，使用@Resource进行注入bean时，遇到一些问题，本文特此记录：*

@@ -2,7 +2,7 @@
 title: jenkins部署springboot应用
 date: 2018-04-08 16:24:50
 categories: 
-- [Devops]
+- [Web开发]
 ---
 
 *最近在项目中使用持续交付(CI)工具jenkins部署spring-boot应用，碰到不少问题，特以此文记录*

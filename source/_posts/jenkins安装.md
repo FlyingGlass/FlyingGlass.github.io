@@ -2,7 +2,7 @@
 title: jenkins安装
 date: 2018-04-08 15:32:01
 categories: 
-- [Devops]
+- [Web开发]
 ---
 
 *最近spring-boot项目用到了持续集成（CI）工具Jenkins进行部署，使用nginx作为反向代理*

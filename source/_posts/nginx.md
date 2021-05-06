@@ -2,7 +2,7 @@
 title: nginx配置
 date: 2018-01-13 21:15:29
 categories: 
-- [Nginx]
+- [Web开发]
 ---
 
 #### centos 6.5配置

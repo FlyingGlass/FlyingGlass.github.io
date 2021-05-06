@@ -2,7 +2,7 @@
 title: nginx反爬策略配置
 date: 2018-06-02 11:39:00
 categories: 
-- [Nginx]
+- [Web开发]
 ---
 
 *网站部署上线后，为了防止爬虫的侵扰，一般会进行反爬策略限制。在Web开发中Nginx一般作为Gateway和Router，本文主要介绍如何使用Nginx进行User-Agent和RateLimit两个方面来进行反爬*
