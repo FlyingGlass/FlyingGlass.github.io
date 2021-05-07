@@ -17,8 +17,8 @@
 <meta property="og:image" content="https://flyingglass.github.io/2021/05/06/数据库虚引用堆积问题/image2021-2-20%2015_57_54.png">
 <meta property="og:image" content="https://flyingglass.github.io/2021/05/06/数据库虚引用堆积问题/image2021-2-20%2016_5_23.png">
 <meta property="og:image" content="https://flyingglass.github.io/2021/05/06/数据库虚引用堆积问题/image2021-2-20%2016_6_38.png">
-<meta property="og:image" content="https://flyingglass.github.io/2021/05/06/数据库虚引用堆积问题/1619691072(1">
-<meta property="og:updated_time" content="2021-05-06T10:34:46.772Z">
+<meta property="og:image" content="https://flyingglass.github.io/2021/05/06/数据库虚引用堆积问题/1619691072.png">
+<meta property="og:updated_time" content="2021-05-07T02:00:47.157Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库虚引用堆积问题">
 <meta name="twitter:description" content="线上出现FGC占用时间过长的告警，查看GC日志确认FGC达到3.84s  问题描述  通过mat分析dump下来的日志发现，com.mysql.cj.jdbc.AbandonedConnectionCleanupThread 对象占了堆内存的大部分空间.  查看对象是com.mysql.cj.jdbc.AbandonedConnectionCleanupThread$ConnectionFinal">
@@ -280,7 +280,7 @@
 </blockquote>
 <p>连接生存时间超过 maxLifetime（默认30分钟）后，连接会被抛弃.</p>
 <p>回头看看<strong>项目的hikari配置</strong>：</p>
-<p><img src="/2021/05/06/数据库虚引用堆积问题/1619691072(1" alt="1619691072(1)">.png)</p>
+<p><img src="/2021/05/06/数据库虚引用堆积问题/1619691072.png" alt="1619691072"></p>
 <ul>
 <li><p>配置了minimumIdle = 10，maximumPoolSize = 10，没有配置idleTimeout和maxLifetime。所以这两项会使用默认值 idleTimeout = 10分钟，maxLifetime = 30分钟。</p>
 </li>
@@ -334,7 +334,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2021/05/06/数据库虚引用堆积问题/" data-id="ckodo0kk6002ahwuyehkt3z1r" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2021/05/06/数据库虚引用堆积问题/" data-id="ckodod45p002gfsuyit6rzlqv" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
