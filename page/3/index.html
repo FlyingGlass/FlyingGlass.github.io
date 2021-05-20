@@ -163,7 +163,7 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                45
+                44
                 <span>文章</span>
             </div>
             <div class="article-info-block">
@@ -192,151 +192,6 @@
 
             
             <section id="main">
-    <article id="post-爬虫设计" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2018/04/27/爬虫设计/">爬虫设计</a>
-        </h1>
-    
-
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2018/04/27/爬虫设计/">
-            <time datetime="2018-04-27T09:31:21.000Z" itemprop="datePublished">2018-04-27</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/安装配置/">安装配置</a>
-    </div>
-
-
-                        
-
-                    </div>
-                
-            </header>
-        
-        
-
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <p><em>一个设计良好的爬虫必须满足如下需求：</em></p>
-<ul>
-<li>分布式：多机分布式执行</li>
-<li>可伸缩性：爬虫结构能够通过额外的机器和带宽来提交爬虫速度</li>
-<li>性能和有效性：爬虫系统必须有效使用各种系统资源，例如Cpu，内存和网络IO</li>
-<li>更新：因为数据来源经常更新，爬虫应该取得已经获取数据的新的拷贝</li>
-<li>可扩展性：为了能够支持新的数据格式和新的抓取协议，爬虫架构应该设计成模块化的形式</li>
-</ul>
-<h4 id="爬虫模块"><a href="#爬虫模块" class="headerlink" title="爬虫模块"></a>爬虫模块</h4><ul>
-<li>URL Frontier(url队列)</li>
-<li>DNS模块</li>
-<li>获取模块（使用http协议获取url代表的数据或页面）</li>
-<li>解析模块提取api数据</li>
-<li>重复消除模块决定一个解析出来的链接是否已经在URL Frontier或者最近下载过</li>
-</ul>
-<p><img src="/2018/04/27/爬虫设计/1524821269.png" alt="爬虫设计"></p>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="https://flyingglass.github.io/2018/04/27/爬虫设计/" data-id="ckowh0ydy002gc0uyj1nbzj4o" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-
     <article id="post-nexus的npm配置" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -418,7 +273,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/04/26/nexus的npm配置/" data-id="ckowh0yde001mc0uyvp27mzpx" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/04/26/nexus的npm配置/" data-id="ckowik3ug001tdkuyhg25p2z3" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -584,7 +439,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/04/26/nexus的maven配置/" data-id="ckowh0ydb001ic0uyblqkxqf2" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/04/26/nexus的maven配置/" data-id="ckowik3ua001idkuydjhuul3r" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -730,7 +585,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/04/26/stellar指南/" data-id="ckowh0ydq0024c0uypkws8wzf" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/04/26/stellar指南/" data-id="ckowik3um0025dkuywv0w3n0a" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -869,7 +724,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/04/08/jenkins部署springboot应用/" data-id="ckowh0yd30016c0uyyaevfk1g" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/04/08/jenkins部署springboot应用/" data-id="ckowik3u40016dkuyx2g8g5kq" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1016,7 +871,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/04/08/jenkins安装/" data-id="ckowh0ycx0011c0uyjxtooy3l" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/04/08/jenkins安装/" data-id="ckowik3u20011dkuyksz3697u" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1165,7 +1020,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/04/08/nexus本地仓库搭建/" data-id="ckowh0yd5001ac0uyj9c3fizh" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/04/08/nexus本地仓库搭建/" data-id="ckowik3ue001pdkuy9aibrb6u" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1303,7 +1158,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/03/19/truffle开发入门/" data-id="ckowh0ydu002ac0uyx6lqdlg7" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/03/19/truffle开发入门/" data-id="ckowik3uq002fdkuyvs3n31yn" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1464,7 +1319,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/03/19/区块链权威指南/" data-id="ckowh0ye1002kc0uyyixh4k1p" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/03/19/区块链权威指南/" data-id="ckowik3ur002hdkuyqwx1e0i5" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1605,7 +1460,152 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/03/13/cdh下Sqoop的使用/" data-id="ckowh0ycn000jc0uyhlqxzavr" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/03/13/cdh下Sqoop的使用/" data-id="ckowik3tr000ldkuy67co6l92" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+
+    <article id="post-cdh下Sqoop2的安装" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2018/03/13/cdh下Sqoop2的安装/">cdh下Sqoop2的安装</a>
+        </h1>
+    
+
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2018/03/13/cdh下Sqoop2的安装/">
+            <time datetime="2018-03-13T06:51:03.000Z" itemprop="datePublished">2018-03-13</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/大数据/">大数据</a>
+    </div>
+
+
+                        
+
+                    </div>
+                
+            </header>
+        
+        
+
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p><em>本文中采用的cdh版本为5.12.0，如何部署cdh可以参考之前的博文<a href="http://flyflyfish.com/2018/02/04/cdh%E5%AE%89%E8%A3%85%E5%87%86%E5%A4%87/" target="_blank" rel="noopener">cdh安装准备</a>和<a href="http://flyflyfish.com/2018/02/04/cdh5-12-0%E5%AE%89%E8%A3%85/" target="_blank" rel="noopener">cdh5.12.0的安装</a></em></p>
+<h4 id="sqoop2配置"><a href="#sqoop2配置" class="headerlink" title="sqoop2配置"></a>sqoop2配置</h4><ul>
+<li>cdh安装sqoop2</li>
+<li>配置Drivers</li>
+<li>配置hadoop依赖</li>
+</ul>
+<h4 id="cdh安装sqoop2"><a href="#cdh安装sqoop2" class="headerlink" title="cdh安装sqoop2"></a>cdh安装sqoop2</h4><p>cdh5.12.0下安装sqoop2，参见官方的<a href="https://www.cloudera.com/documentation/enterprise/5-6-x/topics/cdh_ig_sqoop2_installation.html" target="_blank" rel="noopener">安装手册</a>，直接在搭建好的cdh管理界面添加Sqoop2服务组件，然后一路选择<code>继续</code>安装，等待Sqoop2服务启动完毕。</p>
+<h5 id="配置Drivers"><a href="#配置Drivers" class="headerlink" title="配置Drivers"></a>配置Drivers</h5><p>由于本文是采用hdfs导出数据到mysql，故需配置mysql的connector的jar依赖包，参考<a href="https://www.cloudera.com/documentation/enterprise/5-4-x/topics/cdh_ig_jdbc_driver_install.html" target="_blank" rel="noopener">官方的指南</a>，下载mysql-connector-java.jar包，然后拷贝到对应的<code>cdh</code>的默认<code>sqoop2</code>的目录<code>/var/lin/sqoop2</code>目录中，最终的目录结构如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[~]ls /var/lib/sqoop2</span><br><span class="line">mysql-connector-java.jar  postgresql-9.0-801.jdbc4.jar  repository  tomcat-deployment</span><br></pre></td></tr></table></figure>
+<h5 id="配置hadoop超链接"><a href="#配置hadoop超链接" class="headerlink" title="配置hadoop超链接"></a>配置hadoop超链接</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /opt/cloudera/parcels/CDH/lib/hadoop/client</span><br><span class="line">sudo ln -s ../../hadoop-hdfs/lib/jackson-mapper-asl-1.8.8.jar .</span><br><span class="line">sudo ln -s ../../hadoop-hdfs/lib/jackson-core-asl-1.8.8.jar .</span><br></pre></td></tr></table></figure>
+<p><strong><em>Tips：配置完毕后在cdh管理界面重启Sqoop2组件服务，否则配置不生效</em></strong></p>
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><ul>
+<li><a href="https://www.cloudera.com/documentation/enterprise/5-4-x/topics/cdh_ig_sqoop2_installation.html" target="_blank" rel="noopener">安装文档</a></li>
+<li><a href="https://www.cloudera.com/documentation/enterprise/5-4-x/topics/cdh_ig_jdbc_driver_install.html" target="_blank" rel="noopener">JDBC Drviers for Sqoop</a></li>
+<li><a href="https://community.cloudera.com/t5/Data-Ingestion-Integration/Sqoop-Error-Could-not-start-job/m-p/45359#M1890" target="_blank" rel="noopener">Sqoop Error: Could not start job</a></li>
+</ul>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="https://flyingglass.github.io/2018/03/13/cdh下Sqoop2的安装/" data-id="ckowik3tp000jdkuye0xbnvdo" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1700,25 +1700,6 @@
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2021/05/20/Jedis引发Old区暴涨/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2021/05/20/Jedis引发Old区暴涨/" class="title">Jedis引发Old区暴涨</a></p>
-                            <p class="item-date"><time datetime="2021-05-20T02:20:48.000Z" itemprop="datePublished">2021-05-20</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
                             <a href="/2021/05/20/Jedis引发GC问题/" class="thumbnail">
     
     
@@ -1792,6 +1773,25 @@
                         </div>
                     </li>
                 
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/06/30/HashMap源码解析/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/2020/06/30/HashMap源码解析/" class="title">HashMap源码解析</a></p>
+                            <p class="item-date"><time datetime="2020-06-30T03:13:45.000Z" itemprop="datePublished">2020-06-30</time></p>
+                        </div>
+                    </li>
+                
             </ul>
         </div>
     </div>
@@ -1811,7 +1811,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">6</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">6</span></li></ul>
         </div>
     </div>
 
