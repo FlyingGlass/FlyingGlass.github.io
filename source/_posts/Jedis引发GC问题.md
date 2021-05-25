@@ -45,11 +45,11 @@ categories:
 根据项目实际监控情况，我们未完全上述经验值，对项目进行更合适的设置如下：
 
 ```markdown
+-Xms4G -Xmx4G -Xmn2560M -XX:MetaspaceSize=256M
+
 -XX:-UseAdaptiveSizePolicy
 
--Xmn2560M
-
--XX:SurvivorRatio=48
+-XX:MaxTenuringThreshold=15 -XX:TargetSurvivorRatio=80 -XX:SurvivorRatio=18
 ```
 
 #### Jedis问题解决
