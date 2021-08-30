@@ -163,7 +163,7 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                44
+                47
                 <span>文章</span>
             </div>
             <div class="article-info-block">
@@ -192,6 +192,474 @@
 
             
             <section id="main">
+    <article id="post-jenkins自动化部署" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2018/05/11/jenkins自动化部署/">jenkins自动化部署</a>
+        </h1>
+    
+
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2018/05/11/jenkins自动化部署/">
+            <time datetime="2018-05-11T15:32:14.000Z" itemprop="datePublished">2018-05-11</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Web开发/">Web开发</a>
+    </div>
+
+
+                        
+
+                    </div>
+                
+            </header>
+        
+        
+
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p><em>目前在部署blog之类的静态网站，每次修改完毕后重新部署，略显繁琐，决定通过jenkins+gitlab来进行自动化部署，至于如何安装jenkins+gitlab不是本文重点，可参考我之前的安装博文</em></p>
+<p>实现自动化的部署原理：<code>jenkins</code>通过捕获<code>gitlab</code>的<code>push event</code>来进行自动部署</p>
+<h4 id="Jenkins和Gitlab配置"><a href="#Jenkins和Gitlab配置" class="headerlink" title="Jenkins和Gitlab配置"></a><code>Jenkins</code>和<code>Gitlab</code>配置</h4><ul>
+<li><p>配置<code>gitlab</code>认证：</p>
+<ul>
+<li>路径：<code>Jenkins--&gt;Credentials--&gt;System--&gt;Global credentials(unrestricted)--&gt;Add Credentials</code></li>
+<li><code>Kind</code>选择<code>Gitlab API token</code></li>
+<li>其中<code>API token</code>填写<code>gitlab</code>中有指定仓库权限的账号</li>
+<li><code>ID</code>填写用户账号</li>
+</ul>
+<p><img src="/2018/05/11/jenkins自动化部署/1514013807248833.png" alt="Jenkins配置gitlab认证"></p>
+<p><img src="/2018/05/11/jenkins自动化部署/1514013621369900.png" alt="Gitlab API token生成"></p>
+</li>
+<li><p><code>Jenkins</code>配置<code>gitlab</code>连接</p>
+<ul>
+<li>路径：系统管理—&gt;系统设置</li>
+<li>填写连接名，自定义</li>
+<li>填写<code>gitlab</code>访问<code>URL</code></li>
+<li>选择<code>gitlab</code>认证</li>
+<li>测试连接</li>
+</ul>
+<p><img src="/2018/05/11/jenkins自动化部署/1514014036313824.png" alt="Jenkins配置gitlab连接"></p>
+</li>
+<li><p><code>Jenkins</code>任务配置</p>
+<ul>
+<li><code>General</code>配置：<ul>
+<li>选择<code>Gitlab connection</code>：<code>gitlab</code>（上面步骤配置<code>gitlab</code>连接的连接名）</li>
+<li>在<code>Gitlab connection</code>填入<code>group/repository name</code></li>
+</ul>
+</li>
+<li>构建触发器配置：<ul>
+<li>勾选<code>Build when a change is pushed to GitLab. GitLab CI Service URL:http://ip:port/jenkins/project/repository name</code></li>
+<li>选择<code>push events</code> 事件触发构建</li>
+<li>选择分支过滤（此处可以根据不同的需求来使用过滤功能）</li>
+<li><code>secret token</code>后面将会填入<code>Gitlab</code>项目中的<code>webhook</code></li>
+</ul>
+</li>
+</ul>
+<p><img src="/2018/05/11/jenkins自动化部署/D8D91BE9-33D5-4128-8147-650E8B36E41A.png" alt="General配置"></p>
+<p><img src="/2018/05/11/jenkins自动化部署/1514014402625761.png" alt="构建触发器配置"></p>
+</li>
+<li><p>添加<code>Gitlab webhook</code></p>
+<ul>
+<li>在<code>gitlab</code>中找到项目—&gt;<code>setting</code>—&gt;<code>Integrations</code>配置</li>
+<li><code>URL</code>：填入触发器中配置的<code>GitLab webhook URL</code></li>
+<li><code>Secret Token</code>:构建器中生成的<code>Secret Token</code></li>
+<li>点击<code>Add webhook</code></li>
+<li>点击<code>test</code>—&gt;选择<code>push event</code>进行测试：<code>Hook excuted successfully：HTTP 200</code>即为成功</li>
+</ul>
+<p><img src="/2018/05/11/jenkins自动化部署/1514014567924974.png" alt="Gitlab Add webhook"></p>
+</li>
+<li><p>构建配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env bash</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;WORKSPACE&#125;</span></span><br><span class="line"></span><br><span class="line">HTML_PATH=/var/www/html</span><br><span class="line">NGINX_USER=www-data</span><br><span class="line">NGINX=/usr/sbin/nginx</span><br><span class="line"></span><br><span class="line"><span class="comment"># Git archive zip</span></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$&#123;WORKSPACE&#125;</span> &amp;&amp; git archive --format zip --output <span class="string">"./output.zip"</span> -0 HEAD</span><br><span class="line"></span><br><span class="line"><span class="comment"># Delete older and copy newer</span></span><br><span class="line">sudo rm -rf <span class="variable">$&#123;HTML_PATH&#125;</span> &amp;&amp; sudo mkdir -p <span class="variable">$&#123;HTML_PATH&#125;</span> &amp;&amp; sudo mv <span class="variable">$&#123;WORKSPACE&#125;</span>/output.zip <span class="variable">$&#123;HTML_PATH&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Unzip</span></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$&#123;HTML_PATH&#125;</span> &amp;&amp; sudo unzip output.zip &amp;&amp; sudo chown -R <span class="variable">$NGINX_USER</span>:<span class="variable">$NGINX_USER</span> <span class="variable">$HTML_PATH</span> </span><br><span class="line"></span><br><span class="line"><span class="comment"># Nginx</span></span><br><span class="line">sudo <span class="variable">$NGINX</span> -s reload</span><br><span class="line"></span><br><span class="line"><span class="comment"># Clean</span></span><br><span class="line">sudo rm -rf <span class="variable">$&#123;HTML_PATH&#125;</span>/output.zip <span class="variable">$&#123;HTML_PATH&#125;</span>/reload-nginx.sh</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><ul>
+<li><a href="http://blog.51cto.com/jinlong/2053863" target="_blank" rel="noopener">自动化部署之jenkins自动触发构建和发布</a></li>
+</ul>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="https://flyingglass.github.io/2018/05/11/jenkins自动化部署/" data-id="cksybriwd00111ouy8au9bopu" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+
+    <article id="post-mybatis多数据源" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2018/05/11/mybatis多数据源/">mybatis多数据源</a>
+        </h1>
+    
+
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2018/05/11/mybatis多数据源/">
+            <time datetime="2018-05-11T07:50:06.000Z" itemprop="datePublished">2018-05-11</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Web开发/">Web开发</a>
+    </div>
+
+
+                        
+
+                    </div>
+                
+            </header>
+        
+        
+
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p><em>对于多数据源，一般都是问了解决主从模式或者业务相对复杂需要分库来支持业务的场景。搜索解决方案，要么是采用spring多数据源的方案，要么是利用aop动态切换，感觉有点小复杂，本文采用一种相对简单的解决方案，配置过程中遇到一些问题，特以此文记录</em></p>
+<h4 id="配置yml"><a href="#配置yml" class="headerlink" title="配置yml"></a>配置yml</h4><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">############################# Multiple DataSource</span></span><br><span class="line"><span class="attr">multi:</span></span><br><span class="line">  <span class="attr">datasource:</span></span><br><span class="line">    <span class="attr">enabled:</span> <span class="literal">true</span> <span class="comment">#控制是否开启多数据源</span></span><br><span class="line">    <span class="attr">druid:</span></span><br><span class="line">      <span class="attr">master:</span></span><br><span class="line">        <span class="attr">url:</span> <span class="string">jdbc:mysql://ip:port/master?useUnicode=true&amp;characterEncoding=utf-8&amp;characterSetResults=utf8&amp;autoReconnect=true&amp;failOverReadOnly=false&amp;useSSL=false</span></span><br><span class="line">        <span class="attr">username:</span> <span class="string">root</span></span><br><span class="line">        <span class="attr">password:</span> <span class="string">root</span></span><br><span class="line">        <span class="attr">driver-class-name:</span> <span class="string">com.mysql.jdbc.Driver</span></span><br><span class="line">      <span class="attr">slave:</span></span><br><span class="line">        <span class="attr">url:</span> <span class="string">jdbc:mysql://ip:port/slave?useUnicode=true&amp;characterEncoding=utf-8&amp;characterSetResults=utf8&amp;autoReconnect=true&amp;failOverReadOnly=false&amp;useSSL=false</span></span><br><span class="line">        <span class="attr">username:</span> <span class="string">root</span></span><br><span class="line">        <span class="attr">password:</span> <span class="string">root</span></span><br><span class="line">        <span class="attr">driver-class-name:</span> <span class="string">com.mysql.jdbc.Driver</span></span><br><span class="line">    <span class="attr">mybatis:</span></span><br><span class="line">      <span class="attr">master:</span></span><br><span class="line">        <span class="attr">base-packages:</span> <span class="string">com.fly.mapper.master</span></span><br><span class="line">        <span class="attr">mapper-locations:</span> <span class="string">classpath:mapper/master/*.xml</span></span><br><span class="line">      <span class="attr">slave:</span></span><br><span class="line">        <span class="attr">base-packages:</span> <span class="string">com.fly.mapper.slave</span></span><br><span class="line">        <span class="attr">mapper-locations:</span> <span class="string">classpath:mapper/slave/*.xml</span></span><br><span class="line">        </span><br><span class="line"><span class="comment">################################## mybaits</span></span><br><span class="line"><span class="attr">mybatis:</span></span><br><span class="line">  <span class="attr">type-aliases-package:</span> <span class="string">com.fly.bean.mysql</span></span><br><span class="line">  <span class="comment"># 配置</span></span><br><span class="line">  <span class="attr">configuration:</span></span><br><span class="line">    <span class="attr">cache-enabled:</span> <span class="literal">true</span> <span class="comment">#  全局映射器启用缓存</span></span><br><span class="line">    <span class="attr">lazy-loading-enabled:</span> <span class="literal">true</span> <span class="comment"># 查询时，关闭关联对象即时加载以提高性能</span></span><br><span class="line">    <span class="attr">aggressive-lazy-loading:</span> <span class="literal">false</span> <span class="comment"># 设置关联对象加载的形态，此处为按需加载字段(加载字段由SQL指定)，不会加载关联表的所有字段，以提高性能 --&gt;</span></span><br><span class="line">    <span class="attr">multiple-result-sets-enabled:</span> <span class="literal">true</span> <span class="comment"># 对于未知的SQL查询，允许返回不同的结果集以达到通用的效果 --&gt;</span></span><br><span class="line">    <span class="attr">use-column-label:</span> <span class="literal">true</span> <span class="comment"># 允许使用列标签代替列名 --&gt;</span></span><br><span class="line">    <span class="attr">use-generated-keys:</span> <span class="literal">true</span> <span class="comment"># 允许使用自定义的主键值(比如由程序生成的UUID 32位编码作为键值)，数据表的PK生成策略将被覆盖 --&gt;</span></span><br><span class="line">    <span class="attr">auto-mapping-behavior:</span> <span class="string">full</span> <span class="comment"># 给予被嵌套的resultMap以字段-属性的映射支持 --&gt;</span></span><br><span class="line">    <span class="attr">default-executor-type:</span> <span class="string">batch</span> <span class="comment"># 对于批量更新操作缓存SQL以提高性能  --&gt;</span></span><br><span class="line">    <span class="attr">default-statement-timeout:</span> <span class="number">25000</span> <span class="comment"># 数据库超过25000秒仍未响应则超时 --&gt;</span></span><br><span class="line">    <span class="attr">mapUnderscoreToCamelCase:</span> <span class="literal">true</span> <span class="comment"># mybatis 驼峰命名 --&gt;</span></span><br><span class="line">    <span class="attr">log-impl:</span> <span class="string">org.apache.ibatis.logging.stdout.StdOutImpl</span> <span class="comment"># 命令行输出 --&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="配置数据源"><a href="#配置数据源" class="headerlink" title="配置数据源"></a>配置数据源</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 多数据源</span></span><br><span class="line"><span class="comment"> * 1. mybatis-spring-boot-starter的MybatisAutoConfiguration不支持Multiple DataSource</span></span><br><span class="line"><span class="comment"> *    仅支持Single DataSource或<span class="doctag">@Primary</span> DataSource生效</span></span><br><span class="line"><span class="comment"> * 2. 多数据源的配置必须要配置主库<span class="doctag">@Primary</span>否则报错</span></span><br><span class="line"><span class="comment"> *    或者<span class="doctag">@EnableAutoConfiguration</span>(exclude = MybatisAutoConfiguration.class)禁止AutoConfig</span></span><br><span class="line"><span class="comment"> * 3. 多数据源采用主，副库的配置方式，通过不同包进行隔离</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@org</span>.springframework.context.annotation.Configuration</span><br><span class="line"><span class="meta">@ConditionalOnProperty</span>(name = <span class="string">"multi.datasource.enabled"</span>, havingValue = <span class="string">"true"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MultiDataSourceConfig</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * *******************************************************************</span></span><br><span class="line"><span class="comment">     * 主数据源配置 <span class="doctag">@Primary</span></span></span><br><span class="line"><span class="comment">     * *******************************************************************</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@org</span>.springframework.context.annotation.Configuration</span><br><span class="line">    <span class="meta">@ConditionalOnProperty</span>(name = <span class="string">"multi.datasource.enabled"</span>, havingValue = <span class="string">"true"</span>)</span><br><span class="line">    <span class="meta">@MapperScan</span>(</span><br><span class="line">            basePackages = <span class="string">"com.fly.mapper.master"</span>,</span><br><span class="line">            sqlSessionFactoryRef = <span class="string">"masterSqlSessionFactory"</span></span><br><span class="line">    )</span><br><span class="line">    <span class="meta">@Getter</span></span><br><span class="line">    <span class="meta">@Setter</span></span><br><span class="line">    <span class="meta">@ConfigurationProperties</span>(</span><br><span class="line">            prefix = <span class="string">"multi.datasource.mybatis.master"</span></span><br><span class="line">    )</span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">MasterDataSourceConfig</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@javax</span>.annotation.Resource</span><br><span class="line">        MybatisConfigurationSupport support;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> String[] mapperLocations;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * Primary Druid DataSource</span></span><br><span class="line"><span class="comment">         * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="meta">@ConfigurationProperties</span>(</span><br><span class="line">                prefix = <span class="string">"multi.datasource.druid.master"</span></span><br><span class="line">        )</span><br><span class="line">        <span class="meta">@Primary</span></span><br><span class="line">        <span class="meta">@Bean</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> DataSource <span class="title">masterDataSource</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> DruidDataSourceBuilder</span><br><span class="line">                    .create()</span><br><span class="line">                    .build();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Bean</span></span><br><span class="line">        <span class="meta">@Primary</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> SqlSessionFactoryBean <span class="title">masterSqlSessionFactory</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">                @Qualifier(<span class="string">"masterDataSource"</span>)</span> DataSource dataSource</span></span><br><span class="line"><span class="function">        ) <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> support.createSqlSessionFactoryBean(dataSource, mapperLocations);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * *******************************************************************</span></span><br><span class="line"><span class="comment">     * 从数据源配置</span></span><br><span class="line"><span class="comment">     * *******************************************************************</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@org</span>.springframework.context.annotation.Configuration</span><br><span class="line">    <span class="meta">@ConditionalOnProperty</span>(name = <span class="string">"multi.datasource.enabled"</span>, havingValue = <span class="string">"true"</span>)</span><br><span class="line">    <span class="meta">@MapperScan</span>(</span><br><span class="line">            basePackages = <span class="string">"com.fly.mapper.slave"</span>,</span><br><span class="line">            sqlSessionFactoryRef = <span class="string">"slaveSqlSessionFactory"</span></span><br><span class="line">    )</span><br><span class="line">    <span class="meta">@Getter</span></span><br><span class="line">    <span class="meta">@Setter</span></span><br><span class="line">    <span class="meta">@ConfigurationProperties</span>(</span><br><span class="line">            prefix = <span class="string">"multi.datasource.mybatis.slave"</span></span><br><span class="line">    )</span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SlaveDataSourceConfig</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> String[] mapperLocations;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@javax</span>.annotation.Resource</span><br><span class="line">        MybatisConfigurationSupport support;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * Slave Druid DataSource</span></span><br><span class="line"><span class="comment">         * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="meta">@ConfigurationProperties</span>(</span><br><span class="line">                prefix = <span class="string">"multi.datasource.druid.slave"</span></span><br><span class="line">        )</span><br><span class="line">        <span class="meta">@Bean</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> DataSource <span class="title">slaveDataSource</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> DruidDataSourceBuilder</span><br><span class="line">                    .create()</span><br><span class="line">                    .build();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Bean</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> SqlSessionFactoryBean <span class="title">slaveSqlSessionFactory</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">                @Qualifier(<span class="string">"slaveDataSource"</span>)</span> DataSource dataSource</span></span><br><span class="line"><span class="function">        ) <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> support.createSqlSessionFactoryBean(dataSource, mapperLocations);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * *******************************************************************</span></span><br><span class="line"><span class="comment">     * 用于简化MybatisProperties的配置</span></span><br><span class="line"><span class="comment">     * *******************************************************************</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Component</span></span><br><span class="line">    <span class="meta">@ConditionalOnProperty</span>(name = <span class="string">"multi.datasource.enabled"</span>, havingValue = <span class="string">"true"</span>)</span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">MybatisConfigurationSupport</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">final</span> MybatisProperties properties;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">final</span> ResourceLoader resourceLoader;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">MybatisConfigurationSupport</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">                MybatisProperties properties,</span></span></span><br><span class="line"><span class="function"><span class="params">                ResourceLoader resourceLoader)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.properties = properties;</span><br><span class="line">            <span class="keyword">this</span>.resourceLoader = resourceLoader;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 创建SqlSessionFactoryBean</span></span><br><span class="line"><span class="comment">         * <span class="doctag">@param</span> dataSource</span></span><br><span class="line"><span class="comment">         * <span class="doctag">@param</span> mapperLocations</span></span><br><span class="line"><span class="comment">         * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> SqlSessionFactoryBean <span class="title">createSqlSessionFactoryBean</span><span class="params">(DataSource dataSource, String[] mapperLocations)</span> </span>&#123;</span><br><span class="line">            SqlSessionFactoryBean factory = <span class="keyword">new</span> SqlSessionFactoryBean();</span><br><span class="line">            factory.setDataSource(dataSource);</span><br><span class="line">            factory.setVfs(SpringBootVFS<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">/**</span></span><br><span class="line"><span class="comment">             * 处理Configuration</span></span><br><span class="line"><span class="comment">             * 必须Copy否则会抛出配置多个分页插件的异常</span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line">            Configuration configuration = <span class="keyword">new</span> Configuration();</span><br><span class="line">            <span class="keyword">if</span> (properties.getConfiguration() != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="comment">// 必须Copy否则会抛出配置多个分页插件的异常</span></span><br><span class="line">                BeanUtils.copyProperties(properties.getConfiguration(), configuration);</span><br><span class="line">            &#125;</span><br><span class="line">            factory.setConfiguration(configuration);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 处理MapperLocations</span></span><br><span class="line">            <span class="keyword">if</span> (!ObjectUtils.isEmpty(mapperLocations)) &#123;</span><br><span class="line">                factory.setMapperLocations(resolveMapperLocations(mapperLocations));</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//            if (StringUtils.hasLength(properties.getTypeAliasesPackage())) &#123;</span></span><br><span class="line"><span class="comment">//                factory.setTypeAliasesPackage(properties.getTypeAliasesPackage());</span></span><br><span class="line"><span class="comment">//            &#125;</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> factory;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * MapperLocations 转化为Resource[]</span></span><br><span class="line"><span class="comment">         * <span class="doctag">@param</span> mapperLocations</span></span><br><span class="line"><span class="comment">         * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="keyword">public</span> Resource[] resolveMapperLocations(String[] mapperLocations) &#123;</span><br><span class="line">            ResourcePatternResolver resourceResolver = <span class="keyword">new</span> PathMatchingResourcePatternResolver();</span><br><span class="line">            List&lt;Resource&gt; resources = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">            <span class="keyword">if</span> (mapperLocations != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">for</span> (String mapperLocation : mapperLocations) &#123;</span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                        Resource[] mappers = resourceResolver.getResources(mapperLocation);</span><br><span class="line">                        resources.addAll(Arrays.asList(mappers));</span><br><span class="line">                    &#125; <span class="keyword">catch</span> (IOException ignore) &#123;</span><br><span class="line">                        <span class="comment">// ignore</span></span><br><span class="line">                        ignore.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> resources.toArray(<span class="keyword">new</span> Resource[resources.size()]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><ul>
+<li><a href="https://github.com/kazuki43zoo/mybatis-spring-boot-multi-ds-demo" target="_blank" rel="noopener">mybatis-spring-boot-multi-ds-demo</a></li>
+<li><a href="https://github.com/mybatis/spring-boot-starter/issues/78" target="_blank" rel="noopener">Multi Datasource</a></li>
+</ul>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="https://flyingglass.github.io/2018/05/11/mybatis多数据源/" data-id="cksybriwq001q1ouyljjopai8" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+
+    <article id="post-爬虫设计" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2018/04/27/爬虫设计/">爬虫设计</a>
+        </h1>
+    
+
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2018/04/27/爬虫设计/">
+            <time datetime="2018-04-27T09:31:21.000Z" itemprop="datePublished">2018-04-27</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/安装配置/">安装配置</a>
+    </div>
+
+
+                        
+
+                    </div>
+                
+            </header>
+        
+        
+
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p><em>一个设计良好的爬虫必须满足如下需求：</em></p>
+<ul>
+<li>分布式：多机分布式执行</li>
+<li>可伸缩性：爬虫结构能够通过额外的机器和带宽来提交爬虫速度</li>
+<li>性能和有效性：爬虫系统必须有效使用各种系统资源，例如Cpu，内存和网络IO</li>
+<li>更新：因为数据来源经常更新，爬虫应该取得已经获取数据的新的拷贝</li>
+<li>可扩展性：为了能够支持新的数据格式和新的抓取协议，爬虫架构应该设计成模块化的形式</li>
+</ul>
+<h4 id="爬虫模块"><a href="#爬虫模块" class="headerlink" title="爬虫模块"></a>爬虫模块</h4><ul>
+<li>URL Frontier(url队列)</li>
+<li>DNS模块</li>
+<li>获取模块（使用http协议获取url代表的数据或页面）</li>
+<li>解析模块提取api数据</li>
+<li>重复消除模块决定一个解析出来的链接是否已经在URL Frontier或者最近下载过</li>
+</ul>
+<p><img src="/2018/04/27/爬虫设计/1524821269.png" alt="爬虫设计"></p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="https://flyingglass.github.io/2018/04/27/爬虫设计/" data-id="cksybrix8002t1ouyjkiieqhi" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+
     <article id="post-nexus的npm配置" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -273,7 +741,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/04/26/nexus的npm配置/" data-id="ckowing9f001pnsuyvcyh08aj" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/04/26/nexus的npm配置/" data-id="cksybriws001v1ouy9ba0jxdt" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -439,7 +907,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/04/26/nexus的maven配置/" data-id="ckowing90001ansuy1r2rjx6l" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/04/26/nexus的maven配置/" data-id="cksybriwt001x1ouymyok5ia8" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -585,7 +1053,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/04/26/stellar指南/" data-id="ckowinga20028nsuysqbrxd5d" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/04/26/stellar指南/" data-id="cksybrix2002h1ouy4ij6ofen" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -724,7 +1192,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/04/08/jenkins部署springboot应用/" data-id="ckowing8u0010nsuycab76u57" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/04/08/jenkins部署springboot应用/" data-id="cksybriwo001l1ouyl8023vv7" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -871,7 +1339,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/04/08/jenkins安装/" data-id="ckowing8x0015nsuywdfimp6d" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/04/08/jenkins安装/" data-id="cksybriwb000z1ouyy2l0oyk5" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1020,7 +1488,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/04/08/nexus本地仓库搭建/" data-id="ckowing93001fnsuyusxhituw" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/04/08/nexus本地仓库搭建/" data-id="cksybriwm001g1ouyuep0t962" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1158,454 +1626,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/03/19/truffle开发入门/" data-id="ckowing9z0026nsuy4rtffrpa" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-
-    <article id="post-区块链权威指南" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2018/03/19/区块链权威指南/">区块链权威指南</a>
-        </h1>
-    
-
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2018/03/19/区块链权威指南/">
-            <time datetime="2018-03-19T08:20:48.000Z" itemprop="datePublished">2018-03-19</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/区块链/">区块链</a>
-    </div>
-
-
-                        
-
-                    </div>
-                
-            </header>
-        
-        
-
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <h4 id="区块链架构剖析"><a href="#区块链架构剖析" class="headerlink" title="区块链架构剖析"></a>区块链架构剖析</h4><p>区块链权威指南读书笔记</p>
-<h5 id="区块链1-0架构：比特币区块链"><a href="#区块链1-0架构：比特币区块链" class="headerlink" title="区块链1.0架构：比特币区块链"></a>区块链1.0架构：比特币区块链</h5><ol>
-<li>比特币前端<ul>
-<li>钱包：非决定性钱包，决定性钱包</li>
-<li>HTTP/JSON RPC API</li>
-<li>命令行工具bitcoin-cli</li>
-<li>比特币浏览器bx</li>
-<li>图形开发工具（Qt）</li>
-</ul>
-</li>
-<li>比特币后端<ul>
-<li>区块管理</li>
-<li>区块验证</li>
-<li>内存池管理</li>
-<li>邻接点管理</li>
-<li>共识管理</li>
-<li>规则管理</li>
-<li>密码模块</li>
-<li>签名模块</li>
-<li>脚本引擎</li>
-<li>挖矿</li>
-<li>HTTP/JSON RPC服务端</li>
-<li>Berkeley DB和LevelDB数据库</li>
-<li>P2P网络管理</li>
-<li>ZMQ队列管理</li>
-</ul>
-</li>
-</ol>
-<h5 id="区块链2-0架构：以太坊区块链"><a href="#区块链2-0架构：以太坊区块链" class="headerlink" title="区块链2.0架构：以太坊区块链"></a>区块链2.0架构：以太坊区块链</h5><ul>
-<li>EVM高级语言 ：Solidity(Js)、Serpent(Python)、LLL(Lisp)、Mutan(C已废弃)</li>
-<li>主流脚手架：Go，Solidity(js), Truffle</li>
-</ul>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="https://flyingglass.github.io/2018/03/19/区块链权威指南/" data-id="ckowingad002insuy05gaue3h" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-
-    <article id="post-cdh下Sqoop的使用" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2018/03/13/cdh下Sqoop的使用/">cdh下Sqoop的使用</a>
-        </h1>
-    
-
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2018/03/13/cdh下Sqoop的使用/">
-            <time datetime="2018-03-13T07:17:36.000Z" itemprop="datePublished">2018-03-13</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/大数据/">大数据</a>
-    </div>
-
-
-                        
-
-                    </div>
-                
-            </header>
-        
-        
-
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <p><em>最近项目需要导出Hdfs的数据到mysql中，采用sqoop作为主要的导出方案，在使用sqoop2和sqoop1的过程中，碰到一些问题以及对应的一些解决方案。思绪来的快，去的也快，特此记录</em></p>
-<p>项目中采用cdh搭建的hadoop大数据平台，其中cdh的版本为5.12.0，由于涉及到cdh中sqoop2的部署，使用sqoop2的Java api，sqoop2的源码修改以支持自定义分隔符以及如何采用sqoop1的Java api解决方案，故通过分小节来记录，主要小节分类如下：</p>
-<h4 id="Sqoop2的解决方案："><a href="#Sqoop2的解决方案：" class="headerlink" title="Sqoop2的解决方案："></a>Sqoop2的解决方案：</h4><ul>
-<li><a href="http://flyflyfish.com/2018/03/13/cdh%E4%B8%8BSqoop2%E7%9A%84%E9%83%A8%E7%BD%B2/" target="_blank" rel="noopener">cdh下Sqoop2的部署</a></li>
-<li>Sqoop2 Java api解析</li>
-<li>Sqoop2 自定义分隔符</li>
-</ul>
-<h4 id="Sqoop1的解决方案："><a href="#Sqoop1的解决方案：" class="headerlink" title="Sqoop1的解决方案："></a>Sqoop1的解决方案：</h4><ul>
-<li>cdh下Sqoop1的部署</li>
-<li>Sqoop1 Java api解析</li>
-<li>Sqoop1 remote ssh执行命令 </li>
-</ul>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="https://flyingglass.github.io/2018/03/13/cdh下Sqoop的使用/" data-id="ckowing8g000knsuyjtk6rnt6" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-
-    <article id="post-cdh下Sqoop2的安装" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2018/03/13/cdh下Sqoop2的安装/">cdh下Sqoop2的安装</a>
-        </h1>
-    
-
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2018/03/13/cdh下Sqoop2的安装/">
-            <time datetime="2018-03-13T06:51:03.000Z" itemprop="datePublished">2018-03-13</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/大数据/">大数据</a>
-    </div>
-
-
-                        
-
-                    </div>
-                
-            </header>
-        
-        
-
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <p><em>本文中采用的cdh版本为5.12.0，如何部署cdh可以参考之前的博文<a href="http://flyflyfish.com/2018/02/04/cdh%E5%AE%89%E8%A3%85%E5%87%86%E5%A4%87/" target="_blank" rel="noopener">cdh安装准备</a>和<a href="http://flyflyfish.com/2018/02/04/cdh5-12-0%E5%AE%89%E8%A3%85/" target="_blank" rel="noopener">cdh5.12.0的安装</a></em></p>
-<h4 id="sqoop2配置"><a href="#sqoop2配置" class="headerlink" title="sqoop2配置"></a>sqoop2配置</h4><ul>
-<li>cdh安装sqoop2</li>
-<li>配置Drivers</li>
-<li>配置hadoop依赖</li>
-</ul>
-<h4 id="cdh安装sqoop2"><a href="#cdh安装sqoop2" class="headerlink" title="cdh安装sqoop2"></a>cdh安装sqoop2</h4><p>cdh5.12.0下安装sqoop2，参见官方的<a href="https://www.cloudera.com/documentation/enterprise/5-6-x/topics/cdh_ig_sqoop2_installation.html" target="_blank" rel="noopener">安装手册</a>，直接在搭建好的cdh管理界面添加Sqoop2服务组件，然后一路选择<code>继续</code>安装，等待Sqoop2服务启动完毕。</p>
-<h5 id="配置Drivers"><a href="#配置Drivers" class="headerlink" title="配置Drivers"></a>配置Drivers</h5><p>由于本文是采用hdfs导出数据到mysql，故需配置mysql的connector的jar依赖包，参考<a href="https://www.cloudera.com/documentation/enterprise/5-4-x/topics/cdh_ig_jdbc_driver_install.html" target="_blank" rel="noopener">官方的指南</a>，下载mysql-connector-java.jar包，然后拷贝到对应的<code>cdh</code>的默认<code>sqoop2</code>的目录<code>/var/lin/sqoop2</code>目录中，最终的目录结构如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[~]ls /var/lib/sqoop2</span><br><span class="line">mysql-connector-java.jar  postgresql-9.0-801.jdbc4.jar  repository  tomcat-deployment</span><br></pre></td></tr></table></figure>
-<h5 id="配置hadoop超链接"><a href="#配置hadoop超链接" class="headerlink" title="配置hadoop超链接"></a>配置hadoop超链接</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /opt/cloudera/parcels/CDH/lib/hadoop/client</span><br><span class="line">sudo ln -s ../../hadoop-hdfs/lib/jackson-mapper-asl-1.8.8.jar .</span><br><span class="line">sudo ln -s ../../hadoop-hdfs/lib/jackson-core-asl-1.8.8.jar .</span><br></pre></td></tr></table></figure>
-<p><strong><em>Tips：配置完毕后在cdh管理界面重启Sqoop2组件服务，否则配置不生效</em></strong></p>
-<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><ul>
-<li><a href="https://www.cloudera.com/documentation/enterprise/5-4-x/topics/cdh_ig_sqoop2_installation.html" target="_blank" rel="noopener">安装文档</a></li>
-<li><a href="https://www.cloudera.com/documentation/enterprise/5-4-x/topics/cdh_ig_jdbc_driver_install.html" target="_blank" rel="noopener">JDBC Drviers for Sqoop</a></li>
-<li><a href="https://community.cloudera.com/t5/Data-Ingestion-Integration/Sqoop-Error-Could-not-start-job/m-p/45359#M1890" target="_blank" rel="noopener">Sqoop Error: Could not start job</a></li>
-</ul>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="https://flyingglass.github.io/2018/03/13/cdh下Sqoop2的安装/" data-id="ckowing8j000mnsuypupu6wrn" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/03/19/truffle开发入门/" data-id="cksybrix2002f1ouyjh8lxk0i" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1700,6 +1721,63 @@
                     <li>
                         
                         <div class="item-thumbnail">
+                            <a href="/2021/08/30/lily新手入门/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Lily/">Lily</a></p>
+                            <p class="item-title"><a href="/2021/08/30/lily新手入门/" class="title">lily新手入门</a></p>
+                            <p class="item-date"><time datetime="2021-08-30T07:10:06.000Z" itemprop="datePublished">2021-08-30</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2021/08/30/lily解决方案/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Lily/">Lily</a></p>
+                            <p class="item-title"><a href="/2021/08/30/lily解决方案/" class="title">lily解决方案</a></p>
+                            <p class="item-date"><time datetime="2021-08-30T06:35:13.000Z" itemprop="datePublished">2021-08-30</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2021/08/30/lily概述/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Lily/">Lily</a></p>
+                            <p class="item-title"><a href="/2021/08/30/lily概述/" class="title">lily概述</a></p>
+                            <p class="item-date"><time datetime="2021-08-30T05:58:54.000Z" itemprop="datePublished">2021-08-30</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
                             <a href="/2021/05/20/Jedis引发GC问题/" class="thumbnail">
     
     
@@ -1735,63 +1813,6 @@
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2021/05/06/数据库虚引用堆积问题/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/架构之路/">架构之路</a></p>
-                            <p class="item-title"><a href="/2021/05/06/数据库虚引用堆积问题/" class="title">数据库虚引用堆积问题</a></p>
-                            <p class="item-date"><time datetime="2021-05-06T07:52:42.000Z" itemprop="datePublished">2021-05-06</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2020/06/30/ConcurrentHashMap源码解析/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
-                            <p class="item-title"><a href="/2020/06/30/ConcurrentHashMap源码解析/" class="title">ConcurrentHashMap源码解析</a></p>
-                            <p class="item-date"><time datetime="2020-06-30T05:59:18.000Z" itemprop="datePublished">2020-06-30</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2020/06/30/HashMap源码解析/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
-                            <p class="item-title"><a href="/2020/06/30/HashMap源码解析/" class="title">HashMap源码解析</a></p>
-                            <p class="item-date"><time datetime="2020-06-30T03:13:45.000Z" itemprop="datePublished">2020-06-30</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -1802,7 +1823,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Docker和K8s/">Docker和K8s</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web开发/">Web开发</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/区块链/">区块链</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据/">大数据</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/安装配置/">安装配置</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/">架构之路</a><span class="category-list-count">4</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Docker和K8s/">Docker和K8s</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Lily/">Lily</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web开发/">Web开发</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/区块链/">区块链</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据/">大数据</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/安装配置/">安装配置</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/">架构之路</a><span class="category-list-count">4</span></li></ul>
         </div>
     </div>
 
@@ -1811,7 +1832,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">6</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">6</span></li></ul>
         </div>
     </div>
 
