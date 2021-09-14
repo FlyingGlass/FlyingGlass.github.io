@@ -3,15 +3,21 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
     
-    <title>归档: 2019/12 | 技术人生</title>
+    <title>jmx远程调试 | 技术人生</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta property="og:type" content="website">
-<meta property="og:title" content="技术人生">
-<meta property="og:url" content="https://flyingglass.github.io/archives/2019/12/index.html">
+    <meta name="description" content="Remote Debug开启 开启远程调试  1-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8739  idea开启debug">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jmx远程调试">
+<meta property="og:url" content="https://flyingglass.github.io/2021/09/14/jmx远程调试/index.html">
 <meta property="og:site_name" content="技术人生">
+<meta property="og:description" content="Remote Debug开启 开启远程调试  1-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8739  idea开启debug">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://flyingglass.github.io/2021/09/14/jmx远程调试/idea远程调试.png">
+<meta property="og:updated_time" content="2021-09-14T08:49:47.384Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="技术人生">
+<meta name="twitter:title" content="jmx远程调试">
+<meta name="twitter:description" content="Remote Debug开启 开启远程调试  1-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8739  idea开启debug">
+<meta name="twitter:image" content="https://flyingglass.github.io/2021/09/14/jmx远程调试/idea远程调试.png">
     
 
     
@@ -191,82 +197,162 @@
 </aside>
 
             
-            <section id="main"><div class="timeline timeline-wrap">
-    
-            <div class="timeline-row timeline-row-major">
-                <span class="node"><i class="fa fa-calendar"></i></span>
-                <h1 class="title">2019</h1>
-            </div>
+            <section id="main"><article id="post-jmx远程调试" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
         
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+        
+            <header class="article-header">
                 
     
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2019/12/25/分片和一致性/">分片和一致性</a>
+        <h1 class="article-title" itemprop="name">
+            jmx远程调试
         </h1>
     
 
 
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2019/12/25/分片和一致性/">
-            <time datetime="2019-12-25T07:52:42.000Z" itemprop="datePublished">2019-12-25</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/架构之路/">架构之路</a>
-    </div>
-
-
-                    
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
                 
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2019/12/25/缓存一致性/">缓存一致性</a>
-        </h1>
-    
-
-
-                <div class="article-meta">
-                    
+                    <div class="article-meta">
+                        
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2019/12/25/缓存一致性/">
-            <time datetime="2019-12-25T06:57:28.000Z" itemprop="datePublished">2019-12-25</time>
+        <a href="/2021/09/14/jmx远程调试/">
+            <time datetime="2021-09-14T08:44:22.000Z" itemprop="datePublished">2021-09-14</time>
         </a>
     </div>
 
 
-                    
+                        
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/架构之路/">架构之路</a>
+        <a class="article-category-link" href="/categories/Web开发/">Web开发</a>
     </div>
 
 
-                    
+                        
 
-                </div>
-            </div>
+                    </div>
+                
+            </header>
+        
+        
+
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <h4 id="Remote-Debug开启"><a href="#Remote-Debug开启" class="headerlink" title="Remote Debug开启"></a>Remote Debug开启</h4><ul>
+<li>开启远程调试</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8739</span><br></pre></td></tr></table></figure>
+<ul>
+<li>idea开启debug</li>
+</ul>
+<p><img src="/2021/09/14/jmx远程调试/idea远程调试.png" alt="img"></p>
+
+        
         </div>
-    
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
 </div>
+
+    <a data-url="https://flyingglass.github.io/2021/09/14/jmx远程调试/" data-id="cktju55oh000x94uyhddxtk7y" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2021/08/30/lily新手入门/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">lily新手入门</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+        <section id="comments">
+	<div id="commentContainer"></div>
+</section>
+    
+
+
 
 </section>
             
