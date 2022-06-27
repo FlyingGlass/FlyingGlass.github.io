@@ -163,7 +163,7 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                48
+                51
                 <span>文章</span>
             </div>
             <div class="article-info-block">
@@ -192,6 +192,497 @@
 
             
             <section id="main">
+    <article id="post-ag" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2018/02/26/ag/">ag安装</a>
+        </h1>
+    
+
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2018/02/26/ag/">
+            <time datetime="2018-02-26T11:16:21.000Z" itemprop="datePublished">2018-02-26</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/安装配置/">安装配置</a>
+    </div>
+
+
+                        
+
+                    </div>
+                
+            </header>
+        
+        
+
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <h4 id="Installing-ag-on-CentOS"><a href="#Installing-ag-on-CentOS" class="headerlink" title="Installing ag on CentOS"></a>Installing ag on CentOS</h4><ul>
+<li><h3 id="Prerequistes"><a href="#Prerequistes" class="headerlink" title="Prerequistes"></a>Prerequistes</h3><ul>
+<li>libpcre</li>
+<li>liblzma</li>
+</ul>
+<h3 id="Download-build-and-install"><a href="#Download-build-and-install" class="headerlink" title="Download, build and install"></a>Download, build and install</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install -y pcre-devel</span><br><span class="line">sudo yum install xz-devel</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/src &amp;&amp; sudo git <span class="built_in">clone</span> https://github.com/ggreer/the_silver_searcher.git</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> the_silver_searcher</span><br><span class="line">sudo ./build.sh</span><br><span class="line">sudo make install</span><br><span class="line"></span><br><span class="line"><span class="built_in">which</span> ag</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="https://flyingglass.github.io/2018/02/26/ag/" data-id="cktju65kp000c9kuy1k2nu2zu" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+
+    <article id="post-web常见漏洞" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2018/02/26/web常见漏洞/">web常见漏洞</a>
+        </h1>
+    
+
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2018/02/26/web常见漏洞/">
+            <time datetime="2018-02-26T07:13:29.000Z" itemprop="datePublished">2018-02-26</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Web开发/">Web开发</a>
+    </div>
+
+
+                        
+
+                    </div>
+                
+            </header>
+        
+        
+
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p><em>项目采用springboot作为web框架，涉及到常见的漏洞，特此记录</em></p>
+<hr>
+<h4 id="启用了不安全的HTTP-方法"><a href="#启用了不安全的HTTP-方法" class="headerlink" title="启用了不安全的HTTP 方法"></a>启用了不安全的HTTP 方法</h4><ul>
+<li><p>描述：启用了不安全的 HTTP 方法， 可能会在 Web 服务器上上载、修改或删除 Web 页面、脚本和文件</p>
+</li>
+<li><p>原因：Web 服务器或应用程序服务器是以不安全的方式配置的</p>
+</li>
+<li><p>解决方案：</p>
+<ul>
+<li><p>方案一：</p>
+<p>如果采用springboot内嵌的tomcat容器，可以在application.yml或application.properties增加如下配置：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#解决不安全的HTTP方法漏洞  </span><br><span class="line">server.tomcat.port-header=HEAD,PUT,DELETE,OPTIONS,TRACE,COPY,SEARCH,PROPFIND</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方案二：</p>
+<p>代码增加对tomcat的配置，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span>  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TomcatConfig</span> </span>&#123;  </span><br><span class="line">  </span><br><span class="line">    <span class="meta">@Bean</span>  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> EmbeddedServletContainerFactory <span class="title">servletContainer</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        TomcatEmbeddedServletContainerFactory tomcat = <span class="keyword">new</span> TomcatEmbeddedServletContainerFactory() &#123;<span class="comment">// 1  </span></span><br><span class="line">            <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">postProcessContext</span><span class="params">(Context context)</span> </span>&#123;  </span><br><span class="line">                SecurityConstraint securityConstraint = <span class="keyword">new</span> SecurityConstraint();  </span><br><span class="line">                securityConstraint.setUserConstraint(<span class="string">"CONFIDENTIAL"</span>);  </span><br><span class="line">                SecurityCollection collection = <span class="keyword">new</span> SecurityCollection();  </span><br><span class="line">                collection.addPattern(<span class="string">"/*"</span>);  </span><br><span class="line">                collection.addMethod(<span class="string">"HEAD"</span>);  </span><br><span class="line">                collection.addMethod(<span class="string">"PUT"</span>);  </span><br><span class="line">                collection.addMethod(<span class="string">"DELETE"</span>);  </span><br><span class="line">                collection.addMethod(<span class="string">"OPTIONS"</span>);  </span><br><span class="line">                collection.addMethod(<span class="string">"TRACE"</span>);  </span><br><span class="line">                collection.addMethod(<span class="string">"COPY"</span>);  </span><br><span class="line">                collection.addMethod(<span class="string">"SEARCH"</span>);  </span><br><span class="line">                collection.addMethod(<span class="string">"PROPFIND"</span>);  </span><br><span class="line">                securityConstraint.addCollection(collection);  </span><br><span class="line">                context.addConstraint(securityConstraint);  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;;  </span><br><span class="line">        <span class="keyword">return</span> tomcat;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>测试：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用curl测试：</span></span><br><span class="line">curl -v -X OPTIONS http://www.example.com/<span class="built_in">test</span>/</span><br><span class="line">查看响应的 Allow: GET, HEAD, POST, PUT, DELETE, OPTIONS</span><br><span class="line"></span><br><span class="line"><span class="comment"># 看是否能上载来判断攻击是否生效。</span></span><br><span class="line">curl -v -T test.html  http://www.example.com/<span class="built_in">test</span>/test.html</span><br><span class="line"></span><br><span class="line"><span class="comment"># 找一个存在的页面，如test2.html，如果删除成功，则攻击有效。</span></span><br><span class="line">curl -X DELETE http://www.example.com/<span class="built_in">test</span>/test2.html</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>参考链接：</p>
+<ul>
+<li><a href="http://www.cnblogs.com/qmfsun/p/6169641.html" target="_blank" rel="noopener">验证启用了不安全的HTTP方法</a></li>
+<li><a href="http://blog.csdn.net/liuchuanhong1/article/details/76667343" target="_blank" rel="noopener">spring boot使用内嵌的tomcat解决不安全的HTTP方法安全漏洞</a></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="Apache-JServ-protocol-service"><a href="#Apache-JServ-protocol-service" class="headerlink" title="Apache JServ protocol service"></a>Apache JServ protocol service</h4><ul>
+<li>描述：Apache JServ协议(AJP)是一种二进制协议，可以从web服务器代理入站请求。位于web服务器后的应用服务器，不建议将AJP服务公开访问。如果AJP被错误配置，它可能允许攻击者访问内部资源。</li>
+</ul>
+<ul>
+<li><p>解决方案：</p>
+<ul>
+<li>找到tomcat的配置文件目录，路径如下${tomcat目录}/conf/server.xml</li>
+<li>注释如下行 <code>&lt;Connector port=&quot;8009&quot; protocol=&quot;AJP/1.3&quot; redirectPort=&quot;8443&quot; /&gt;</code></li>
+</ul>
+</li>
+<li><p>参考链接：</p>
+<ul>
+<li><a href="https://stackoverflow.com/questions/40262315/how-to-disable-apache-jserv-protocol-service" target="_blank" rel="noopener">stackoverflow禁用AJP服务</a></li>
+<li><a href="https://tomcat.apache.org/connectors-doc/ajp/ajpv13a.html" target="_blank" rel="noopener">The Apache Tomcat Connector</a></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="Host-header-attack"><a href="#Host-header-attack" class="headerlink" title="Host header attack"></a>Host header attack</h4><ul>
+<li><p>描述：在许多情况下，开发人员信任HTTP主机头值并使用它来生成链接、导入脚本，甚至生成密码重置与它的值的链接。这是一个非常糟糕的想法，因为HTTP主机头可以由攻击者控制，可以利用网络缓存中毒和滥用替代渠道的密码重置邮件。</p>
+</li>
+<li><p>解决方案：</p>
+<ul>
+<li>使用getServerName()代替getHeader(“host”);</li>
+<li>在Apache和nginx通过设置一个虚拟机来记录所有的非法Host header，或者在Apache和nginx里指定一个ServerName名单;</li>
+<li>同时，Apache开启UseCanonicalName选项</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Apache在extra下的httpd-default.conf文件或者虚拟主机加入如下配置</span></span><br><span class="line">UseCanonicalName On</span><br><span class="line"><span class="comment"># Nginx配置</span></span><br><span class="line">server_name example.com;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>参考链接：</p>
+<ul>
+<li><a href="https://www.oschina.net/question/1455558_2218206" target="_blank" rel="noopener">被检测出有HTTP HOST头部攻击</a></li>
+<li><a href="http://blog.csdn.net/zzzzzyl/article/details/78583251" target="_blank" rel="noopener">host头攻击解决方法</a></li>
+</ul>
+<hr>
+</li>
+</ul>
+<h4 id="Slow-HTTP-Denial-of-Service-Attack"><a href="#Slow-HTTP-Denial-of-Service-Attack" class="headerlink" title="Slow HTTP Denial of Service Attack"></a>Slow HTTP Denial of Service Attack</h4><ul>
+<li><p>描述：web服务器容易受到HTTP DoS(拒绝服务)攻击的影响，HTTP POST DoS攻击依赖于HTTP协议的设计要求。在处理之前完全接收到服务器，如果HTTP请求没有完成，或者传输速率非常低，服务器保持它的资源忙着等待其余的数据。如果服务器保存了太多的资源，这会造成拒绝服务。</p>
+</li>
+<li><p>解决方案：</p>
+<p>配置防火墙 <code>iptables -A INPUT -p tcp --syn --dport 端口号 -m connlimit --connlimit-above 50 -j REJECT</code></p>
+</li>
+<li><p>参考链接</p>
+<ul>
+<li><a href="https://security.stackexchange.com/questions/42618/how-to-protect-tomcat-7-against-slowloris-attack" target="_blank" rel="noopener">how-to-protect-tomcat-7-against-slowloris-attack</a></li>
+</ul>
+</li>
+</ul>
+<p>​    </p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="https://flyingglass.github.io/2018/02/26/web常见漏洞/" data-id="cktju65lr002j9kuy19vviqps" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+
+    <article id="post-nginx转发丢失端口问题" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2018/02/24/nginx转发丢失端口问题/">nginx转发丢失端口问题</a>
+        </h1>
+    
+
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2018/02/24/nginx转发丢失端口问题/">
+            <time datetime="2018-02-24T09:57:56.000Z" itemprop="datePublished">2018-02-24</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Web开发/">Web开发</a>
+    </div>
+
+
+                        
+
+                    </div>
+                
+            </header>
+        
+        
+
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p><em>nginx对于redirect location的处理，会造成端口丢失的现象。针对nginx处理非80标准端口进行redirect时导致端口丢失的问题，本文主要介绍nginx的反向代理和访问目录缺失/这两种情形</em></p>
+<p>以下为两种情形的参考范例：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 反向代理</span></span><br><span class="line"><span class="attribute">listen</span> <span class="number">26479</span> default_server;</span><br><span class="line"><span class="attribute">location</span> / &#123;</span><br><span class="line">    <span class="attribute">root</span> /var/www/html;</span><br><span class="line">    <span class="attribute">proxy_pass</span> http://127.0.0.1:8080/;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> Host             <span class="variable">$host</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> X-Real-IP        <span class="variable">$remote_addr</span>;  </span><br><span class="line">    <span class="attribute">proxy_set_header</span> X-Forwarded-For  <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 访问/gitlab的时候会自动加上/成为/gitlab/</span></span><br><span class="line"><span class="attribute">listen</span> <span class="number">26479</span> default_server;</span><br><span class="line"><span class="attribute">location</span> /gitlab &#123;</span><br><span class="line">    <span class="attribute">root</span> /var/www/html;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h4><p>查看<a href="http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header" target="_blank" rel="noopener">nginx官方文档</a>提及的说明：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">An unchanged “Host” request header field can be passed like this:</span><br><span class="line"></span><br><span class="line">proxy_set_header Host       $http_host;</span><br></pre></td></tr></table></figure>
+<p>同时参考gitlab-ce使用非标准端口访问的方案，查看gitlab-ce的nginx配置如下：</p>
+<p><code>proxy_set_header Host    $http_host;</code></p>
+<p>通过查看nginx软件包，发现nginx已提供参考文件/etc/nginx/proxy_params</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">proxy_set_header</span> Host <span class="variable">$http_host</span>;</span><br><span class="line"><span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line"><span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line"><span class="attribute">proxy_set_header</span> X-Forwarded-Proto <span class="variable">$scheme</span>;</span><br></pre></td></tr></table></figure>
+<p>由于我使用的centos下面手动编译的nginx并未找到proxy_params，我的nginx位于/usr/local/nginx，于是通过<code>vim /usr/local/nginx/conf/proxy_params</code>输入以上内容，配置nginx的location如下：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">location</span> /gitlab &#123;</span><br><span class="line">    <span class="attribute">proxy_pass</span> http://127.0.0.1:9090/gitlab;</span><br><span class="line">    <span class="attribute">include</span> proxy_params;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>也可以手工输入proxy_params的内容到<code>location</code>配置段下</p>
+<h4 id="访问目录缺失"><a href="#访问目录缺失" class="headerlink" title="访问目录缺失/"></a>访问目录缺失/</h4><p>比如<code>$document_root</code>存在<code>data/index.html</code>文件，但是访问的时候最后没加<code>/</code>，nginx会自动给你带上<code>/</code>，返回一个301重定向(这个行为和<a href="https://httpd.apache.org/docs/2.4/mod/mod_dir.html" target="_blank" rel="noopener">apache一致</a>)，但是当nginx监听的是非标准端口，这个301返回的<code>Location</code>没有端口号，导致浏览器请求出错。用curl可以很明显的看到这一点:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">[~]# curl -v 127.0.0.1:9090/data</span><br><span class="line">* About to connect() to 127.0.0.1 port 9090 (#0)</span><br><span class="line">*   Trying 127.0.0.1...</span><br><span class="line">* Connected to 127.0.0.1 (127.0.0.1) port 9090 (#0)</span><br><span class="line">&gt; GET /data HTTP/1.1</span><br><span class="line">&gt; User-Agent: curl/7.29.0</span><br><span class="line">&gt; Host: 127.0.0.1:9090</span><br><span class="line">&gt; Accept: */*</span><br><span class="line">&gt; </span><br><span class="line">&lt; HTTP/1.1 301 Moved Permanently</span><br><span class="line">* Server nginx is not blacklisted</span><br><span class="line">&lt; Server: nginx</span><br><span class="line">&lt; Date: Mon, 26 Feb 2018 02:20:49 GMT</span><br><span class="line">&lt; Content-Type: text/html; charset=utf-8</span><br><span class="line">&lt; Content-Length: 178</span><br><span class="line">&lt; Connection: keep-alive</span><br><span class="line">&lt; Cache-Control: no-cache</span><br><span class="line">&lt; Location: http://127.0.0.1/data/</span><br><span class="line">&lt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;&lt;title&gt;301 Moved Permanently&lt;/title&gt;&lt;/head&gt;</span><br><span class="line">&lt;body bgcolor=&quot;white&quot;&gt;</span><br><span class="line">&lt;center&gt;&lt;h1&gt;301 Moved Permanently&lt;/h1&gt;&lt;/center&gt;</span><br><span class="line">&lt;hr&gt;&lt;center&gt;nginx&lt;/center&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line">* Connection #0 to host 127.0.0.1 left intact</span><br></pre></td></tr></table></figure>
+<p>可以看到Location端口号丢失了，这个和反向代理不一样。通过google搜索，在<a href="https://stackoverflow.com/questions/15555428/nginx-causes-301-redirect-if-theres-no-trailing-slash" target="_blank" rel="noopener">stackoverflow的question</a>找到了解决方案：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">if</span> (-d <span class="variable">$request_filename</span>) &#123;</span><br><span class="line">    <span class="attribute">rewrite</span> [^/]$ <span class="variable">$scheme</span>://<span class="variable">$http_host</span><span class="variable">$uri</span>/ <span class="literal">permanent</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过对URL进行重写带上端口</p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="https://flyingglass.github.io/2018/02/24/nginx转发丢失端口问题/" data-id="cktju65lm00279kuys2o6upav" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+
     <article id="post-cdh5-12-0安装" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -299,7 +790,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/02/04/cdh5-12-0安装/" data-id="cktju55o3000g94uyfgsoifdc" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/02/04/cdh5-12-0安装/" data-id="cktju65kx000s9kuydslgfpd2" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -466,7 +957,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/02/04/cdh安装准备/" data-id="cktju55o6000l94uyrc89ae4a" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/02/04/cdh安装准备/" data-id="cktju65kw000r9kuyzdxeob3c" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -610,7 +1101,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/01/13/minidlna/" data-id="cktju55or001j94uy4qt1c9dl" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/01/13/minidlna/" data-id="cktju65lb001i9kuy4knviqxz" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -750,7 +1241,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/01/13/homebrew/" data-id="cktju55oe000s94uyb9nyjl0v" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/01/13/homebrew/" data-id="cktju65l300119kuyb2eummcw" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -891,7 +1382,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/01/13/gogs/" data-id="cktju55od000p94uyo7p60g5r" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/01/13/gogs/" data-id="cktju65ky000u9kuyckjlw8t6" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1031,7 +1522,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/01/13/redis/" data-id="cktju55p2002894uy72sdhq7l" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/01/13/redis/" data-id="cktju65ln00299kuy8qys7ox8" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1188,141 +1679,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/01/13/nginx/" data-id="cktju55oy001y94uyc6dp1964" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-
-    <article id="post-mysql" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2018/01/13/mysql/">mysql配置</a>
-        </h1>
-    
-
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2018/01/13/mysql/">
-            <time datetime="2018-01-13T12:48:17.000Z" itemprop="datePublished">2018-01-13</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/安装配置/">安装配置</a>
-    </div>
-
-
-                        
-
-                    </div>
-                
-            </header>
-        
-        
-
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <h3 id="centos-6-5"><a href="#centos-6-5" class="headerlink" title="centos 6.5"></a>centos 6.5</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum -y update &amp;&amp; yum -y upgrade</span><br><span class="line">yum -y install mysql-server</span><br><span class="line">service mysqld restart</span><br></pre></td></tr></table></figure>
-<h3 id="centos-7-0"><a href="#centos-7-0" class="headerlink" title="centos 7.0"></a>centos 7.0</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm</span><br><span class="line">rpm -ivh mysql-community-release-el7-5.noarch.rpm</span><br><span class="line">yum -y install mysql-community-server</span><br><span class="line">service mysqld restart</span><br></pre></td></tr></table></figure>
-<h3 id="Ubuntu-16-04"><a href="#Ubuntu-16-04" class="headerlink" title="Ubuntu 16.04"></a>Ubuntu 16.04</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Remove</span></span><br><span class="line">sudo apt-get remove mysql-*</span><br><span class="line">dpkg -l |grep ^rc|awk <span class="string">'&#123;print $2&#125;'</span> |sudo xargs dpkg -P</span><br><span class="line"><span class="comment"># Install</span></span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install mysql-server</span><br><span class="line">mysql_secure_installation</span><br><span class="line">systemctl status mysql.service</span><br><span class="line">mysqladmin -p -u root version</span><br></pre></td></tr></table></figure>
-<h3 id="etc-my-cnf配置"><a href="#etc-my-cnf配置" class="headerlink" title="/etc/my.cnf配置"></a>/etc/my.cnf配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[root@namenode01 ~]# grep -v &quot;#&quot; /etc/my.cnf | grep -v &quot;^$&quot;</span><br><span class="line">[mysqld]</span><br><span class="line">datadir=/var/lib/mysql</span><br><span class="line">socket=/var/lib/mysql/mysql.sock</span><br><span class="line">symbolic-links=0</span><br><span class="line">sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES</span><br><span class="line">character-set-server=utf8mb4</span><br><span class="line">collation-server=utf8mb4_general_ci</span><br><span class="line">init_connect=&apos;SET NAMES utf8mb4&apos;</span><br><span class="line">skip-character-set-client-handshake=true</span><br><span class="line">[mysqld_safe]</span><br><span class="line">log-error=/var/log/mysqld.log</span><br><span class="line">pid-file=/var/run/mysqld/mysqld.pid</span><br><span class="line">[mysql]</span><br><span class="line">default-character-set=utf8mb4</span><br><span class="line">[mysqld]</span><br><span class="line">lower_case_table_names=1</span><br><span class="line">[client]</span><br><span class="line">port            = 3306</span><br><span class="line">default-character-set=utf8mb4</span><br></pre></td></tr></table></figure>
-<h3 id="设置用户"><a href="#设置用户" class="headerlink" title="设置用户"></a>设置用户</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">grant all privileges on *.* to &apos;root&apos;@&apos;%&apos; identified by &apos;root&apos;;</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="https://flyingglass.github.io/2018/01/13/mysql/" data-id="cktju55oq001f94uy37id7kmz" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/01/13/nginx/" data-id="cktju65lj001z9kuyfxllfpx4" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1400,7 +1757,7 @@
 
 
     <nav id="page-nav">
-        <a class="extend prev" rel="prev" href="/page/4/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
+        <a class="extend prev" rel="prev" href="/page/4/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/">下一页 &raquo;</a>
     </nav>
 
 </section>
@@ -1413,6 +1770,63 @@
         <h3 class="widget-title">最新文章</h3>
         <div class="widget">
             <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2022/06/26/腾讯2021年报/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/腾讯/">腾讯</a></p>
+                            <p class="item-title"><a href="/2022/06/26/腾讯2021年报/" class="title">腾讯2021年报</a></p>
+                            <p class="item-date"><time datetime="2022-06-26T11:26:14.000Z" itemprop="datePublished">2022-06-26</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2022/06/19/投资清单/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/估值理论/">估值理论</a></p>
+                            <p class="item-title"><a href="/2022/06/19/投资清单/" class="title">投资清单</a></p>
+                            <p class="item-date"><time datetime="2022-06-19T03:18:35.000Z" itemprop="datePublished">2022-06-19</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2022/03/02/速读财报/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/估值理论/">估值理论</a></p>
+                            <p class="item-title"><a href="/2022/03/02/速读财报/" class="title">速读财报</a></p>
+                            <p class="item-date"><time datetime="2022-03-02T14:32:50.000Z" itemprop="datePublished">2022-03-02</time></p>
+                        </div>
+                    </li>
                 
                     <li>
                         
@@ -1452,63 +1866,6 @@
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2021/08/30/lily解决方案/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Lily/">Lily</a></p>
-                            <p class="item-title"><a href="/2021/08/30/lily解决方案/" class="title">lily解决方案</a></p>
-                            <p class="item-date"><time datetime="2021-08-30T06:35:13.000Z" itemprop="datePublished">2021-08-30</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2021/08/30/lily概述/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Lily/">Lily</a></p>
-                            <p class="item-title"><a href="/2021/08/30/lily概述/" class="title">lily概述</a></p>
-                            <p class="item-date"><time datetime="2021-08-30T05:58:54.000Z" itemprop="datePublished">2021-08-30</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2021/05/20/Jedis引发GC问题/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/架构之路/">架构之路</a></p>
-                            <p class="item-title"><a href="/2021/05/20/Jedis引发GC问题/" class="title">Jedis引发GC问题</a></p>
-                            <p class="item-date"><time datetime="2021-05-20T02:20:48.000Z" itemprop="datePublished">2021-05-20</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -1519,7 +1876,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Docker和K8s/">Docker和K8s</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Lily/">Lily</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web开发/">Web开发</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/区块链/">区块链</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据/">大数据</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/安装配置/">安装配置</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/">架构之路</a><span class="category-list-count">4</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Docker和K8s/">Docker和K8s</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Lily/">Lily</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web开发/">Web开发</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/估值理论/">估值理论</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/区块链/">区块链</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据/">大数据</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/安装配置/">安装配置</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/">架构之路</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/腾讯/">腾讯</a><span class="category-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -1528,7 +1885,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">6</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">六月 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">6</span></li></ul>
         </div>
     </div>
 
@@ -1574,7 +1931,7 @@
 
 
             <!--
-            &copy; 2021 Fly<br>
+            &copy; 2022 Fly<br>
             Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
             -->
         </div>
