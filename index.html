@@ -163,7 +163,7 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                55
+                52
                 <span>文章</span>
             </div>
             <div class="article-info-block">
@@ -219,7 +219,7 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/Mesh/">Mesh</a>
+        <a class="article-category-link" href="/categories/架构之路/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/架构之路/Mesh/">Mesh</a>
     </div>
 
 
@@ -236,7 +236,8 @@
             
             <p>本文主要讨论Istio Ingress Gateway入口方案，网关选型为Istio Ingress Gateway（Envoy网关的一种），部署方式为中心化网关进行部署，在腾讯云落地方式目前主要考虑两种方式：</p>
 <h3 id="CLB复用"><a href="#CLB复用" class="headerlink" title="CLB复用"></a>CLB复用</h3><ul>
-<li><p>架构图：<img src="/2023/03/28/mesh下Gateway落地/Mesh入口.jpg" alt></p>
+<li><p>架构图：</p>
+<p><img src="/2023/03/28/mesh下Gateway落地/Mesh入口.jpg" alt></p>
 </li>
 <li><p>优点：</p>
 <ol>
@@ -290,7 +291,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2023/03/28/mesh下Gateway落地/" data-id="clfrz23t6003ru4uyf1dl1hcb" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2023/03/28/mesh下Gateway落地/" data-id="clft37r3l00193cuy3vy0lxfx" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -394,7 +395,7 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/Mesh/">Mesh</a>
+        <a class="article-category-link" href="/categories/架构之路/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/架构之路/Mesh/">Mesh</a>
     </div>
 
 
@@ -420,7 +421,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2023/03/23/mesh腾讯云物理架构/" data-id="clfrz0heb001pu4uyto1qy54d" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2023/03/23/mesh腾讯云物理架构/" data-id="clft37r3o001e3cuyi00tpzuc" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -524,7 +525,7 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/Mesh/">Mesh</a>
+        <a class="article-category-link" href="/categories/架构之路/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/架构之路/Mesh/">Mesh</a>
     </div>
 
 
@@ -637,7 +638,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2023/03/22/mesh与cvm的对比/" data-id="clfrz0he6001gu4uy49nmurwg" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2023/03/22/mesh与cvm的对比/" data-id="clft37r3n001c3cuyvhvin2qx" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -741,7 +742,7 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/Mesh/">Mesh</a>
+        <a class="article-category-link" href="/categories/架构之路/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/架构之路/Mesh/">Mesh</a>
     </div>
 
 
@@ -759,7 +760,7 @@
             <h3 id="Mesh改造"><a href="#Mesh改造" class="headerlink" title="Mesh改造"></a>Mesh改造</h3><h4 id="镜像"><a href="#镜像" class="headerlink" title="镜像"></a>镜像</h4><ul>
 <li><p>容器相关：用于构建镜像，运行容器</p>
 <p><code>Dockerfile</code></p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> mdd-images.tencentcloudcr.com/mdd/alijdk:<span class="number">8.8</span>.<span class="number">9</span>_centos</span><br><span class="line"></span><br><span class="line"><span class="keyword">ARG</span> PROJ_DIR=/data/tvbcserver/mdd</span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> <span class="variable">$PROJ_DIR</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> mdd-community-api.jar <span class="variable">$PROJ_DIR</span></span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> start.sh <span class="variable">$PROJ_DIR</span></span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> preStop.sh <span class="variable">$PROJ_DIR</span></span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> chmod +x start.sh &amp;&amp; chmod +x preStop.sh</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CMD</span><span class="bash"> [<span class="string">"/bin/bash"</span>, <span class="string">"-c"</span>, <span class="string">"/data/tvbcserver/mdd/start.sh"</span>]</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> mdd-images.tencentcloudcr.com/mdd/alijdk:<span class="number">8.8</span>.<span class="number">9</span>_centos</span><br><span class="line"></span><br><span class="line"><span class="keyword">ARG</span> PROJ_DIR=/data/tvbcserver/mdd</span><br><span class="line"><span class="keyword">WORKDIR</span> $PROJ_DIR</span><br><span class="line"></span><br><span class="line"><span class="keyword">COPY</span> mdd-community-api.jar $PROJ_DIR</span><br><span class="line"><span class="keyword">COPY</span> start.sh $PROJ_DIR</span><br><span class="line"><span class="keyword">COPY</span> preStop.sh $PROJ_DIR</span><br><span class="line"><span class="keyword">RUN</span> chmod +x start.sh &amp;&amp; chmod +x preStop.sh</span><br><span class="line"></span><br><span class="line"><span class="keyword">CMD</span> ["/bin/bash", "-c", "/data/tvbcserver/mdd/start.sh"]</span><br></pre></td></tr></table></figure>
 <p><code>start.sh</code></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env bash</span></span><br><span class="line"><span class="comment"># logs</span></span><br><span class="line">[[ -d logs ]] || mkdir logs</span><br><span class="line"><span class="comment"># [[ -d logs/app ]] || mkdir -p logs/app</span></span><br><span class="line"><span class="comment"># [[ -d logs/cfs ]] || mkdir -p logs/cfs</span></span><br><span class="line"><span class="comment"># chmod -R 777 logs/mdd-community</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># JAVA_OPTS</span></span><br><span class="line"><span class="keyword">if</span> [ -z <span class="string">"<span class="variable">$JAVA_OPTS</span>"</span> ];<span class="keyword">then</span></span><br><span class="line">  JAVA_OPTS=<span class="string">"<span class="variable">$&#123;JAVA_OPTS&#125;</span> -Xms1g -Xmx1g -Xmn512m -XX:MetaspaceSize=256m -Xss256k"</span></span><br><span class="line">  JAVA_OPTS=<span class="string">"<span class="variable">$&#123;JAVA_OPTS&#125;</span> -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:+UseCMSInitiatingOccupancyOnly -XX:CMSInitiatingOccupancyFraction=70 -XX:+CMSScavengeBeforeRemark -XX:+ParallelRefProcEnabled"</span></span><br><span class="line">  JAVA_OPTS=<span class="string">"<span class="variable">$&#123;JAVA_OPTS&#125;</span> -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=100M -XX:+PrintGCDetails -XX:+PrintGCDateStamps -Xloggc:logs/gc.log -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=logs/oom-error.hprof"</span></span><br><span class="line">  JAVA_OPTS=<span class="string">"<span class="variable">$&#123;JAVA_OPTS&#125;</span> -Djava.net.preferIPv4Stack=true -Duser.timezone=Asia/Shanghai -Dfile.encoding=UTF-8 -DJM.LOG.PATH=logs -DJM.SNAPSHOT.PATH=/data/tvbcserver"</span></span><br><span class="line"><span class="comment">#   JAVA_OPTS="$&#123;JAVA_OPTS&#125; -javaagent:/data/tvbcserver/mdd/mddagent/mdd-agent-starter.jar -Dlily.agent.servlet.enabled=true"</span></span><br><span class="line"><span class="comment">#   JAVA_OPTS="$&#123;JAVA_OPTS&#125; -javaagent:/data/tvbcserver/skywalking/agent/skywalking-agent.jar=collector.backend_service=172.16.80.4:11800,agent.service_name=mdd::mdd-community"</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  JAVA_OPTS=<span class="string">"<span class="variable">$JAVA_OPTS</span>"</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># JAVA_ARGS</span></span><br><span class="line"><span class="keyword">if</span> [ -z <span class="string">"<span class="variable">$JAVA_ARGS</span>"</span> ];<span class="keyword">then</span></span><br><span class="line">  JAVA_ARGS=<span class="string">"--spring.cloud.nacos.discovery.metadata.env=dev --feign.mdd.load-balancer.enabled=false"</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  JAVA_ARGS=<span class="string">"<span class="variable">$JAVA_ARGS</span>"</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">java <span class="variable">$JAVA_OPTS</span> -jar mdd-community-api.jar <span class="variable">$JAVA_ARGS</span></span><br></pre></td></tr></table></figure>
 <p><code>preStop.sh</code>：用于Lily规则修改，用于打通Nacos的CVM集群</p>
@@ -810,677 +811,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2023/03/22/mesh服务改造手册/" data-id="clfrz0hei001zu4uykiv3a6ja" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-
-    <article id="post-腾讯2021年报（上）" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2022/06/26/腾讯2021年报（上）/">腾讯2021年报</a>
-        </h1>
-    
-
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2022/06/26/腾讯2021年报（上）/">
-            <time datetime="2022-06-26T11:26:14.000Z" itemprop="datePublished">2022-06-26</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/腾讯/">腾讯</a>
-    </div>
-
-
-                        
-
-                    </div>
-                
-            </header>
-        
-        
-
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <h2 id="本文分为两个部分："><a href="#本文分为两个部分：" class="headerlink" title="本文分为两个部分："></a>本文分为两个部分：</h2><ul>
-<li>腾讯2021年报（上）</li>
-<li>腾讯2021年报（下）</li>
-</ul>
-<h3 id="财报数据分析"><a href="#财报数据分析" class="headerlink" title="财报数据分析"></a>财报数据分析</h3><p>2022年3月23日，腾讯披露2021年度业绩。</p>
-<p>公司全年营业收入<code>5601亿</code>，同比增长<code>16%</code>；归属于上市公司股东所有的净利润（下文简称归母净利）<code>2248亿</code>，同比增长<code>42%</code>；经非国际准则调整后的归母净利<code>1238亿</code>（下文简称Non-IFRS），同比增长<code>1%</code>。</p>
-<p>其中第四季度营收<code>1442亿</code>，同比增长<code>8%</code>，环比增长<code>1%</code>；单季归母净利<code>950亿</code>，同比增长<code>60%</code>，环比增长<code>140%</code>；</p>
-<p>经非国际准则调整后的归母净利<code>249亿</code>，同比增长<code>-25%</code>，环比增长<code>-22%</code>。</p>
-<p>今年的归母净利<code>2248亿</code>，同步增长<code>41%</code>，当然是喜人的。但是，处置股票的收益算在某个年度，只是一种报表数据的扭曲。今年仅仅供京东的资产分类变化：从联营企业变更为【以公允价值计量且其变动计入全面收益的金融资产】，给腾讯年报带来了<code>780亿</code>净利润。</p>
-<p>—变化的原因是<code>4.57亿</code>股京东，以特别红利的形式分派给股东，同时<code>刘炽平</code>辞去董事职务，按照会计准则必须记录变化导致的投资收益。</p>
-<p>这部分收益实际上是多年持有期间，累计产生的。我们既要在没有体现的年份里，考虑到实际增长投资收益，也要在体现出来的年份有意的忽略掉大部分。</p>
-<p>我们需要特别关注的数据是：经非国际准则调整后的归母净利<code>1238亿</code>，年度同比增长<code>1%</code>。第四季度经非国际准则调整后的归母净利<code>249亿</code>，同比增长<code>-25%</code>，环比增长<code>-22%</code>。</p>
-<p>通过公司的利润表和业务分项披露，我们可以发现全年收入同比增长<code>16%</code>的情况下，Non-IFRS仅增长<code>1%</code>的两个核心原因：</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">业务分类</th>
-<th>2021营收</th>
-<th>2020营收</th>
-<th>同比增幅</th>
-<th>2021年占比</th>
-<th>2020年占比</th>
-<th>2021毛利率</th>
-<th>2020毛利率</th>
-<th>2021成本</th>
-<th>2020成本</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">增值服务</td>
-<td>2916</td>
-<td>2642</td>
-<td>10%</td>
-<td>52%</td>
-<td>55%</td>
-<td>52%</td>
-<td>54%</td>
-<td>1386</td>
-<td>1213</td>
-</tr>
-<tr>
-<td style="text-align:center">网络广告</td>
-<td>887</td>
-<td>823</td>
-<td>8%</td>
-<td>16%</td>
-<td>17%</td>
-<td>46%</td>
-<td>51%</td>
-<td>481</td>
-<td>400</td>
-</tr>
-<tr>
-<td style="text-align:center">金融科技及企业服务</td>
-<td>1722</td>
-<td>1281</td>
-<td>34%</td>
-<td>31%</td>
-<td>27%</td>
-<td>30%</td>
-<td>28%</td>
-<td>1208</td>
-<td>918</td>
-</tr>
-<tr>
-<td style="text-align:center">其他</td>
-<td>77</td>
-<td>75</td>
-<td>3%</td>
-<td>1%</td>
-<td>1%</td>
-<td>13%</td>
-<td>1%</td>
-<td>67</td>
-<td>74</td>
-</tr>
-<tr>
-<td style="text-align:center">合计</td>
-<td>5602</td>
-<td>4821</td>
-<td>16%</td>
-<td>100%</td>
-<td>100%</td>
-<td>44%</td>
-<td>46%</td>
-<td>3142</td>
-<td>2605</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>第一，新增营收大部分是由毛利率更低、净利率为负值的金融科技及企业服务部门创造—主要是支付和云</p>
-<p>该部门贡献了全部营收增长<code>780亿（5601-4821</code>）里的<code>441亿（1722-1281</code>），占比<code>441/780~=57%</code>。</p>
-<p>第二，增值业务（主要是游戏）和广告业务的毛利率，均有比较明显的下跌，其中增值业务的毛利率从<code>54%</code>微跌<code>2</code>个点到<code>52%</code>，广告业务的毛利率从<code>51%</code>大幅下降至<code>46%</code>。</p>
-<p>利润表的对比数据，还能告诉我们：影响经调整毛利率和经调整归母净利的因素，一是成本上升，二是管理费用率上升。</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>利润表科目</th>
-<th>2021</th>
-<th>2020</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>收入</td>
-<td>5601</td>
-<td>4821</td>
-</tr>
-<tr>
-<td>成本</td>
-<td>3142</td>
-<td>2605</td>
-</tr>
-<tr>
-<td>成本率</td>
-<td>56%</td>
-<td>54%</td>
-</tr>
-<tr>
-<td>销售费用</td>
-<td>406</td>
-<td>338</td>
-</tr>
-<tr>
-<td>销售费用率</td>
-<td>7%</td>
-<td>6%</td>
-</tr>
-<tr>
-<td>管理费用</td>
-<td>898</td>
-<td>676</td>
-</tr>
-<tr>
-<td>管理费用率</td>
-<td>16%</td>
-<td>14%</td>
-</tr>
-<tr>
-<td>经调整归母净利</td>
-<td>1238</td>
-<td>1227</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>如果按照2020年的同等占比测算，<code>5601亿</code>的营收的成本应为<code>5601 * 54%=3025亿</code>，实际支出<code>3142亿</code>，多支出<code>117亿</code>。同理，管理费用多支出<code>898-5601 * 14%=114亿</code>。两项合计对税前利润造成231亿的负面影响。</p>
-<p>这其中成本的增加，前面已经分析了，主要是因为成本偏高、毛利率偏低的金融科技和企业服务收入增速较快，高毛利的增值业务（主要是游戏）及广告业务增速较慢，导致的收入结构变化造成的。</p>
-<p>那么管理费用额外增加的一百多亿，又是因为什么呢？</p>
-<p>财报解释说，主要受研发支出增加影响，而研发支出里主要又是雇员成本（包括股份酬金支出）的增加：财报显示，2021年全年研发支出<code>519亿</code>，同比增长<code>33%</code>，其中雇员相关开支<code>430亿</code>，同比增速更高，达到<code>36%</code>。</p>
-<p>这体现的是2021年人才招聘市场竞争异常激烈，这里，老唐理解的两个困境：</p>
-<ol>
-<li>在监管风向大变的情况下，大型互联网凭条纷纷调整公司发展方向，增加对符合政策鼓励方向的新业务投入。短期内多家大型互联网平台的布局调整，引发了对人才的争夺加剧，从而抬升了管理费用率。</li>
-<li>过去一年里包括腾讯及其投资的相关互联网上市公司在内，股价均因多种因素持续下跌，导致市场对其未来发展偏悲观—悲观和下跌互为因果。对未来悲观叠加股价大幅下跌，直接导致同样的聘用员工，所需要开出的薪酬必须提升—梦想和热情的权重下降时，工资待遇的权重就需要上升；当对期权未来增值前景评价不高时，要么需要多给现金，要么需要多给期权。</li>
-</ol>
-<p>直接证据：财报关于股份酬金，2021年腾讯及其应占联合营公司支付的股份酬金是<code>308亿</code>，相比2020年的<code>171亿</code>，直接多出<code>137亿</code>。</p>
-<p>当然里面肯定部分原因是员工数量扩大约<code>30%</code>造成的。但由于一方面新增员工有大量是因搜狗和易车并表增加的，真正新增的数量并没有<code>30%</code>；另一方面股份酬金<code>308亿</code>，相比同期<code>171亿</code>的增幅是<code>80%</code>，远高于<code>30%</code>的人数增加。</p>
-<p>所以，这里面应该有很大一部分，算是为监管环境改变支付的代价吧。</p>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="https://flyingglass.github.io/2022/06/26/腾讯2021年报（上）/" data-id="clfrz0hfg0036u4uyzzvty4bp" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-
-    <article id="post-投资清单" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2022/06/19/投资清单/">投资清单</a>
-        </h1>
-    
-
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2022/06/19/投资清单/">
-            <time datetime="2022-06-19T03:18:35.000Z" itemprop="datePublished">2022-06-19</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/估值理论/">估值理论</a>
-    </div>
-
-
-                        
-
-                    </div>
-                
-            </header>
-        
-        
-
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <h3 id="投资清单"><a href="#投资清单" class="headerlink" title="投资清单"></a>投资清单</h3><h4 id="了解企业-企业的基本要素"><a href="#了解企业-企业的基本要素" class="headerlink" title="了解企业-企业的基本要素"></a>了解企业-企业的基本要素</h4><ol>
-<li>你是否愿意花很多时间去了解这家企业？</li>
-<li>如果你是首席执行官，你会如何评估这家企业？</li>
-<li>你能用自己的语言描述企业的运作方式吗？</li>
-<li>企业如何赚钱？</li>
-<li>随着时间的推移，企业如何发展的？</li>
-<li>企业在哪些国外市场中运营，有何风险？</li>
-</ol>
-<h4 id="了解企业-从客户的角度"><a href="#了解企业-从客户的角度" class="headerlink" title="了解企业-从客户的角度"></a>了解企业-从客户的角度</h4><ol>
-<li>企业的核心客户是谁？</li>
-<li>客户群是集中化还是多元化的？</li>
-<li>劝说客户购买其产品或服务，是容易还是困难？</li>
-<li>企业的客户留存率是多少？</li>
-<li>企业以客户为导向的标志是什么？</li>
-<li>企业为客户解决了哪些问题？</li>
-<li>客户对企业产品或服务的依赖程度如何？</li>
-<li>如果某家企业明天消失，会对客户群造成什么影响？</li>
-</ol>
-<h4 id="评估企业和行业的优劣势"><a href="#评估企业和行业的优劣势" class="headerlink" title="评估企业和行业的优劣势"></a>评估企业和行业的优劣势</h4><ol>
-<li>企业是否具有可持续的竞争优势，其来源是什么？</li>
-<li>企业是否具备提高价格却不失去客户的能力？</li>
-<li>企业所在的行业是好还是坏？</li>
-<li>随着时间的推移，行业是如何演变的？</li>
-<li>企业的竞争格局是什么样的，竞争有多激烈？</li>
-<li>企业与供应商之间建立了怎样的关系？</li>
-</ol>
-<h4 id="衡量企业运营和财务状况"><a href="#衡量企业运营和财务状况" class="headerlink" title="衡量企业运营和财务状况"></a>衡量企业运营和财务状况</h4><ol>
-<li>企业的基本面是什么？</li>
-<li>你需要监控哪些企业的运营指标？</li>
-<li>企业面临的主要风险是什么？</li>
-<li>通货膨胀会对企业造成什么影响？</li>
-<li>企业的资产负债表是强还是弱？</li>
-<li>企业的投入资本回报率是多少？</li>
-</ol>
-<h4 id="评估收益分配（现金流）"><a href="#评估收益分配（现金流）" class="headerlink" title="评估收益分配（现金流）"></a>评估收益分配（现金流）</h4><ol>
-<li>管理层采用保守还是自由的会计标准？</li>
-<li>企业产生经常性收益还是一次性交易收益？</li>
-<li>企业周期性、逆周期性和抗衰退型的程度如何？</li>
-<li>经营杠杆影响企业收益的程度如何？</li>
-<li>营运资本如何影响企业的现金流？</li>
-<li>企业资本支出需求是高还是低？</li>
-</ol>
-<h4 id="评估管理层素质-背景和类型：他们是谁"><a href="#评估管理层素质-背景和类型：他们是谁" class="headerlink" title="评估管理层素质-背景和类型：他们是谁"></a>评估管理层素质-背景和类型：他们是谁</h4><ol>
-<li>领导公司的管理者是什么类型？</li>
-<li>引进外部管理层会对企业产生哪些影响？</li>
-<li>管理者是狮子型管理者，还是鬣狗型管理者？</li>
-<li>管理者如何上升到领导整个企业的位置？</li>
-<li>高级管理层如何获得报酬和所有权？</li>
-<li>管理者是否一直在买入或卖出股票？</li>
-</ol>
-<h4 id="评估管理层素质-能力：管理层如何运营企业"><a href="#评估管理层素质-能力：管理层如何运营企业" class="headerlink" title="评估管理层素质-能力：管理层如何运营企业"></a>评估管理层素质-能力：管理层如何运营企业</h4><ol>
-<li>首席执行官管理企业时是否惠及所有股东？</li>
-<li>管理层是日益改善运作，还是使用战略计划来引领企业？</li>
-<li>首席执行官和首席财务官是否就盈利问题发布指导意见？</li>
-<li>企业管理层是以集中还是分散的方式进行管理？</li>
-<li>管理层是否重视员工？</li>
-<li>管理层是否知道如何很好地招聘？</li>
-<li>管理层是否关注削减不必要的成本？</li>
-<li>首席执行官和首席财务官在制定资本分配决策时是否纪律严明？</li>
-<li>首席执行官和首席财务官是否会适时回购股票？</li>
-</ol>
-<h4 id="评估管理层素质-积极和消极特质"><a href="#评估管理层素质-积极和消极特质" class="headerlink" title="评估管理层素质-积极和消极特质"></a>评估管理层素质-积极和消极特质</h4><ol>
-<li>首席执行官爱钱还是爱企业？</li>
-<li>你能否识别管理人员是否正直？</li>
-<li>管理者对股东的言行是否明确和一致？</li>
-<li>管理层是否会独立思考，并不受到同行者行为的影响？</li>
-<li>首席执行官是否会自我推销？</li>
-</ol>
-<h4 id="评估增长机会"><a href="#评估增长机会" class="headerlink" title="评估增长机会"></a>评估增长机会</h4><ol>
-<li>企业是通过并购（M &amp; A）增长，还是有机增长？</li>
-<li>管理层让企业增长的动机是什么？</li>
-<li>历史增长是否有利可图，是否会持续下去？</li>
-<li>企业未来的增长前景如何？</li>
-<li>管理层是让企业过快还是稳步增长？</li>
-</ol>
-<h4 id="评估合并和收购"><a href="#评估合并和收购" class="headerlink" title="评估合并和收购"></a>评估合并和收购</h4><ol>
-<li>管理层如何做出合并与收购的决策？</li>
-<li>企业过去的收购是否成功？</li>
-</ol>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="https://flyingglass.github.io/2022/06/19/投资清单/" data-id="clfrz0hfj003au4uytpqs78nm" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-
-    <article id="post-速读财报" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2022/03/02/速读财报/">速读财报</a>
-        </h1>
-    
-
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2022/03/02/速读财报/">
-            <time datetime="2022-03-02T14:32:50.000Z" itemprop="datePublished">2022-03-02</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/估值理论/">估值理论</a>
-    </div>
-
-
-                        
-
-                    </div>
-                
-            </header>
-        
-        
-
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <h3 id="财报浅印象"><a href="#财报浅印象" class="headerlink" title="财报浅印象"></a>财报浅印象</h3><h4 id="利润表："><a href="#利润表：" class="headerlink" title="利润表："></a>利润表：</h4><ul>
-<li>营业收入：关注3个增长（过去，现在，未来），常见3个途径（潜在需求增长，市场份额扩大和价格提升）</li>
-<li>毛利率：（营业收入 - 营业成本）/ 营业收入=毛利率，3个档次40%以上，40%以下，20%以下（直接排除）</li>
-<li>费用率：3费（销售费用，管理费用，财务费用），财务费用采用保守策略，(销售费用  + 管理费用 + 财务费用) / 营业收入 = 费用率，3个档次30%以内，30%-70%，70%以上（关注价值不大）</li>
-<li>营业利润率：营业利润/营业收入= 营业利润率，营业总收入-营业成本-公允价值变动收益、投资收益和汇兑收益=营业利润，营业利润的占比体现企业的盈利能力。营业利润率不仅要关注数字大小，还要对比历史变化。营业利润率上升，要看主要是因为售价提升、成本下降，还是费用控制得力。</li>
-<li>经营现金流净额：经营现金流净额 / 净利润，比值越大越好，持续大于1是优秀企业的重要特征。</li>
-</ul>
-<h4 id="资产负载表：（先找钱、后花钱）"><a href="#资产负载表：（先找钱、后花钱）" class="headerlink" title="资产负载表：（先找钱、后花钱）"></a>资产负载表：（先找钱、后花钱）</h4><h5 id="负债项目：弄明白钱的来源"><a href="#负债项目：弄明白钱的来源" class="headerlink" title="负债项目：弄明白钱的来源"></a>负债项目：弄明白钱的来源</h5><ul>
-<li>负债和所有者权益优先看：明确公司有多少钱是自己的，多少钱是借来的。对比历史资产增加值和净利润，追踪现金去向。</li>
-<li>负债表：为何借？向谁借？借多久？利息几何？</li>
-<li>负债率：负债率 = 负债 / 总资产和有息负债率 = 有息负债 / 总资产，有息负债率 &gt;= 60%值得警醒。</li>
-</ul>
-<h5 id="资产项目：关注钱的去处"><a href="#资产项目：关注钱的去处" class="headerlink" title="资产项目：关注钱的去处"></a>资产项目：关注钱的去处</h5><ul>
-<li>资产项目：主要关注钱的去处，无外乎看原来的钱有何变化，新钱（利润、新增股东投入和新增负债）花哪里去了，需要对比历史。</li>
-<li>4个要点：先看资产总计，再看4个要点：生产资产 / 总资产；应收 / 总资产；货币资金 / 有息负债；非主业资产 / 总资产。</li>
-<li>3个角度：结构、历史、同行。</li>
-<li>结构分析：轻资产优于重资产，当年税前利润总额 / 生产资产 &gt;= 社会平均资本回报率（按银行贷款标准利率的两倍毛估），则属于轻公司，反之则属于重公司。</li>
-<li>历史分析：透过历史查看生产资产/总资产如何变化？与同行比如何变化？</li>
-<li>财务稳健、业务专注：应收款 / 总资产，货币资金 / 有息负债，非主业资产 / 总资产比例</li>
-</ul>
-<h4 id="现金流量表"><a href="#现金流量表" class="headerlink" title="现金流量表"></a>现金流量表</h4><ul>
-<li>经营活动现金流量中的异常：持续经营现金流净额为负？经营现金流净额为正，但主要是应付账款和应付票据的增加，拖欠供应商贷款，资金链断裂前兆？</li>
-<li>投资活动现金流量中的异常：<ol>
-<li>购买固定资产、无形资产等的支出，持续高于经营活动现金流量净额，说明企业持续借钱维持投资行为，项目无敌信心？还是营业收入和利润造假？</li>
-<li>投资活动现金流入里面，有大量现金因出售固定资产或其他长期资产获得？可能是衰败的标志</li>
-</ol>
-</li>
-<li>筹资活动现金流量中的异常：<ol>
-<li>企业需要大量资金时，出现“取得借款收到的现金，远小于归还借款支付的现金”现象，银行评估企业不行，骗还贷？</li>
-<li>企业为筹资支付了高于正常水平的利息或中间费用 —- 体现在“分配股利、利润或偿付利息支付的现金”和“支付其他与筹资活动有关的现金”两个科目的明细，可能企业遇到了生存危机？</li>
-</ol>
-</li>
-<li>如何通过现金流量表寻找优质企业：<ol>
-<li>经营活动产生的现金流量净额 &gt; 净利润 &gt; 0；</li>
-<li>销售商品、提供劳务收到的现金 &gt;= 营业收入；</li>
-<li>投资活动现金流出 &gt; 投资活动现金流入，且主要用于扩展，而非用于维持原有盈利能力；</li>
-<li>现金及现金等价物增加额 &gt; 0，可放宽为：排除当年实施的现金分红因素影响后，现金及现金等价物净增加额 &gt; 0；</li>
-<li>期末现金及现金等价物余额 &gt;= 有息负债，可放宽为：期末现金及现金等价物 + 可迅速变现的金融资产净值 &gt; 有息负债。</li>
-</ol>
-</li>
-<li>现金流量表应该这样读：自制3张表，净利润和经营现金净额，销售收现和营业收入，现金余额、投资支出、现金分红和有息负债。</li>
-</ul>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="https://flyingglass.github.io/2022/03/02/速读财报/" data-id="clfrz0hfo003iu4uy9zcvfjyu" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2023/03/22/mesh服务改造手册/" data-id="clft37r3s001m3cuy6aoyn4xv" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1617,7 +948,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2021/09/14/jmx远程调试/" data-id="clfrz0he4001eu4uy6va3fkz5" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2021/09/14/jmx远程调试/" data-id="clft37r3g000z3cuy9cvayhg7" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1721,7 +1052,7 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/Lily/">Lily</a>
+        <a class="article-category-link" href="/categories/架构之路/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/架构之路/微服务/">微服务</a>
     </div>
 
 
@@ -1760,7 +1091,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2021/08/30/lily新手入门/" data-id="clfrz0hea001nu4uyr1tykmxz" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2021/08/30/lily新手入门/" data-id="clft37r3j00143cuyr5sfkpjh" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1864,7 +1195,7 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/Lily/">Lily</a>
+        <a class="article-category-link" href="/categories/架构之路/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/架构之路/微服务/">微服务</a>
     </div>
 
 
@@ -1936,7 +1267,494 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2021/08/30/lily解决方案/" data-id="clfrz0heh001xu4uyy5g8w0lu" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2021/08/30/lily解决方案/" data-id="clft37r3k00173cuy22kiui1f" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+
+    <article id="post-lily概述" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2021/08/30/lily概述/">lily概述</a>
+        </h1>
+    
+
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2021/08/30/lily概述/">
+            <time datetime="2021-08-30T05:58:54.000Z" itemprop="datePublished">2021-08-30</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/架构之路/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/架构之路/微服务/">微服务</a>
+    </div>
+
+
+                        
+
+                    </div>
+                
+            </header>
+        
+        
+
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><h4 id="核心功能"><a href="#核心功能" class="headerlink" title="核心功能"></a>核心功能</h4><p>基于Spring Cloud、Spring Cloud Alibaba服务注册发现，Ribbon负载均衡，Feign和Rest Template调用，Spring Cloud Gateway</p>
+<ul>
+<li>全链路版本、环境、IP地址和端口匹配动态路由</li>
+<li>全链路自定义网关、服务的过滤器、负载均衡策略发布</li>
+<li>全链路条件匹配、非条件匹配</li>
+<li>服务实时性流量无损下线：IP和端口屏蔽</li>
+<li>异步场景下全链路追踪和路由：异步跨线程Agent插件</li>
+<li>全链路调用链追踪、日志监测</li>
+<li>提供服务端、消费端隔离、注册级别隔离和准入</li>
+<li>本地和远程，局部和全局配置策略驱动</li>
+<li>配置中心（Nacos）、Swagger和Rest规则策略推送</li>
+<li>基于Header参数化规则策略驱动</li>
+<li>限流、熔断、降级防护</li>
+</ul>
+<h4 id="版本兼容列表"><a href="#版本兼容列表" class="headerlink" title="版本兼容列表"></a>版本兼容列表</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Mdd Dependencies Version</th>
+<th>Spring Cloud Version</th>
+<th>Spring Cloud Alibaba Version</th>
+<th>Spring Boot Version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2.0.0</td>
+<td>Hoxton.SR9</td>
+<td>2.2.5.RELEASE</td>
+<td>2.3.8.RELEASE</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="概念介绍"><a href="#概念介绍" class="headerlink" title="概念介绍"></a>概念介绍</h4><ul>
+<li>滚动发布<ol>
+<li>概念：每次滚动升级一个或者多个服务，升级完成后监控观察，直到所有旧版本服务升级到新版本。属于有损发布</li>
+<li>优点：升级快捷，影响范围小，只会影响滚动发布的服务。</li>
+<li>缺点：在滚动升级过程中，无法快速无损回滚，必须降级部署</li>
+</ol>
+</li>
+<li>全链路路由</li>
+</ul>
+<p><img src="/2021/08/30/lily概述/全链路路由.png" alt="image-20210830143225872"></p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="https://flyingglass.github.io/2021/08/30/lily概述/" data-id="clft37r3h00123cuy0ifplrfo" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+
+    <article id="post-Jedis引发GC问题" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2021/05/20/Jedis引发GC问题/">Jedis引发GC问题</a>
+        </h1>
+    
+
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2021/05/20/Jedis引发GC问题/">
+            <time datetime="2021-05-20T02:20:48.000Z" itemprop="datePublished">2021-05-20</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/架构之路/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/架构之路/问题集锦/">问题集锦</a>
+    </div>
+
+
+                        
+
+                    </div>
+                
+            </header>
+        
+        
+
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <h4 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h4><p><em>线上应用经常收到跨服务间SocketTimeout的异常，服务间的调用设置超时时间为500ms，查看Cat监控发现，发生超时异常都伴随着FGC，并且FGC时间都大于500ms，于是决定dump heap镜像。</em></p>
+<h4 id="问题定位分析"><a href="#问题定位分析" class="headerlink" title="问题定位分析"></a>问题定位分析</h4><p>通过<code>mat</code>查看<code>heap dump</code>镜像，发现<strong>Finalizer</strong>引用队列在活跃对象占比高达<code>31.43%</code>，猜测可能有泄漏。</p>
+<p><img src="/2021/05/20/Jedis引发GC问题/1621478132.png" alt="1621478132"></p>
+<p>进一步分析发现，<strong>SocksSocketImpl</strong>对象高达<code>113529</code>多个，大量的对象都是<code>Jedis</code>链接，由此确定<code>Jedis</code>可能发生泄漏，同时查看<code>Old</code>区空间稳步斜率增长，怀疑对象未充分<code>YGC</code>即进入<code>Old</code>区，造成下次<code>FGC</code>较长的<code>STW</code>，引发超时。</p>
+<p><img src="/2021/05/20/Jedis引发GC问题/1621478647.png" alt="1621478647"></p>
+<p><img src="/2021/05/20/Jedis引发GC问题/1621478719.png" alt="1621478719"></p>
+<h4 id="GC问题验证"><a href="#GC问题验证" class="headerlink" title="GC问题验证"></a>GC问题验证</h4><p>接下来就是验证上述猜测了，通过获取<code>gc</code>相关的参数，查看<code>JVM</code>各区的容量，发现<code>S0</code>和<code>S1</code>容量被调整非常小大约<code>2m</code>左右，结合收集器配置，情况如下：</p>
+<p><img src="/2021/05/20/Jedis引发GC问题/1621479168.png" alt="1621479168"></p>
+<p>应用采用默认的<code>PS</code>和<code>PO</code>收集器，并且默认开启<code>-XX:+UseAdaptiveSizePolicy</code>，系统会通过吞吐量（<code>cpu</code>的<code>gc</code>时间）计算，优先保证吞吐量来分配<code>Eden</code>，<code>From</code>，<code>To</code>的<code>size</code>，最终导致<code>S0,S1</code>区降为<code>2m</code>。结合<code>GC</code>日志和<code>Cat</code>监控，导致<code>Old</code>的问题就明朗了，每次<code>YGC</code>结束，由于<code>PS</code>和<code>PO</code>收集器的缘故，<code>S0</code>和<code>S1</code>区太小无法，导致配置的晋升参数<code>8</code>几乎失效，对象晋升过快被拷贝到<code>Old</code>区，于是添加<code>-XX:+PrintTenuringDistribution</code>上线验证，得到如下大量<code>GC</code>日志：</p>
+<p><code>Desired survivor size 5048576 bytes, new threshold 1 (max 8)</code> </p>
+<h4 id="GC问题调整"><a href="#GC问题调整" class="headerlink" title="GC问题调整"></a>GC问题调整</h4><p>上述日志验证猜想，对象由于<code>S0</code>和<code>S1</code>的<code>size</code>太小，晋升过快，问题得到验证，解决就简单了：</p>
+<ol>
+<li>更换收集器，<code>PN+CMS</code>或者<code>G1</code>均可</li>
+<li>仍然采用<code>PS+PO</code>收集器，关闭<code>-XX:-UseAdaptiveSizePolicy</code>，手动设置<code>Xmn</code>和<code>SurvivorRatio</code>的值</li>
+</ol>
+<p>考虑<code>heap</code>内存比较小，<code>4g</code>左右，根据<code>R大</code>的一些分享，采用方案<code>2</code>，进行解决，通过<code>Cat</code>获取<code>S0</code>，<code>S1</code>，<code>Eden</code>的大小以及<code>After FGC</code>后活跃对象的占比，设置对应参数即可，以下来自于美团的设置分享：</p>
+<p><img src="/2021/05/20/Jedis引发GC问题/1621480549.png" alt="1621480549"></p>
+<p>根据项目实际监控情况，我们未完全上述经验值，对项目进行更合适的设置如下：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-Xms4G -Xmx4G -Xmn2560M -XX:MetaspaceSize=256M</span><br><span class="line"></span><br><span class="line">-XX:-UseAdaptiveSizePolicy</span><br><span class="line"></span><br><span class="line">-XX:MaxTenuringThreshold=15 -XX:TargetSurvivorRatio=80 -XX:SurvivorRatio=18</span><br></pre></td></tr></table></figure>
+<h4 id="Jedis问题解决"><a href="#Jedis问题解决" class="headerlink" title="Jedis问题解决"></a>Jedis问题解决</h4><p>上述<code>Jedis</code>垃圾一方面由于<code>GC</code>配置参数不合理导致晋升不合理，查看<code>Jedis</code>的连接池的配置，也进行了调整，查看<code>GenericObjectPool</code>代码，定时任务检测驱逐对象，关键代码如下：</p>
+<p><img src="/2021/05/20/Jedis引发GC问题/20181018222116696.png" alt="20181018222116696"></p>
+<p><img src="/2021/05/20/Jedis引发GC问题/20181018222136328.png" alt="20181018222136328"></p>
+<p><img src="/2021/05/20/Jedis引发GC问题/20181018222203139.png" alt="20181018222203139"><img src="/2021/05/20/Jedis引发GC问题/20181018222149994.png" alt="20181018222149994"></p>
+<p>从上面代码我们看出，每隔一段时间，就会检测对象池里面对象，要是发现对象空闲时间超过一定时间，就会强制回收；然后又发现链接少于<code>minIdle</code>了，开始创建对象，以满足<code>mindle</code>。调整<code>Redis client</code> 设置的检测轮询时间为1分钟，设置<code>miniIdle</code>为5，修改后上线观察。</p>
+<h4 id="调整前后对比："><a href="#调整前后对比：" class="headerlink" title="调整前后对比："></a>调整前后对比：</h4><p>调整前：</p>
+<p><img src="/2021/05/20/Jedis引发GC问题/1621480961.png" alt="1621480961"></p>
+<p><img src="/2021/05/20/Jedis引发GC问题/1621481201.png" alt="1621481201"></p>
+<p>调整后：</p>
+<p><img src="/2021/05/20/Jedis引发GC问题/1621481022.png" alt="1621481022"></p>
+<p><img src="/2021/05/20/Jedis引发GC问题/1621481096.png" alt="1621481096"></p>
+<p>通过上述对比可以看到调整后<code>YGC</code>的次数比调整前减半，调整后的<code>Oldgen</code>也几乎稳定不增长了，<code>YGC</code>由于少了大量的<code>From</code>区往<code>Old</code>区的拷贝（减少<code>Survivor</code>拷贝，<code>GC</code>标记较快，主要耗时为拷贝），<code>YGC</code>时间耗时大幅下降，<code>GC</code>吞吐量获得提升。</p>
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接:"></a>参考链接:</h4><p><a href="https://www.jianshu.com/p/7414fd6862c5" target="_blank" rel="noopener">JVM GC 之「AdaptiveSizePolicy」实战</a></p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="https://flyingglass.github.io/2021/05/20/Jedis引发GC问题/" data-id="clft37r2p00043cuyfef58tl0" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+
+    <article id="post-Kafka选举导致的问题" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2021/05/06/Kafka选举导致的问题/">Kafka选举导致的问题</a>
+        </h1>
+    
+
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2021/05/06/Kafka选举导致的问题/">
+            <time datetime="2021-05-06T11:16:21.000Z" itemprop="datePublished">2021-05-06</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/大数据/">大数据</a>
+    </div>
+
+
+                        
+
+                    </div>
+                
+            </header>
+        
+        
+
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>线上Kafka集群由于分区达到上限，出现了选举，ISR列表发生了变更，通过kibana的日志分析：</p>
+<p><img src="/2021/05/06/Kafka选举导致的问题/image2021-3-3 10_46_48.png" alt="img"></p>
+<p>单个异常栈如下：</p>
+<p><img src="/2021/05/06/Kafka选举导致的问题/image2021-3-3 10_49_22.png" alt="img"></p>
+<p>消费业务代码如下：</p>
+<p><img src="/2021/05/06/Kafka选举导致的问题/image2021-3-3 10_49_58.png" alt="img"></p>
+<p>最终Future的超时代码如下：</p>
+<p><img src="/2021/05/06/Kafka选举导致的问题/image2021-3-3 10_51_25.png" alt="img"></p>
+<p>根据堆栈和日志追踪到这里：</p>
+<p><img src="/2021/05/06/Kafka选举导致的问题/image2021-3-3 10_51_43.png" alt="img"></p>
+<p>kafka阻塞目前会存在两个地方：</p>
+<ol>
+<li>首次拉取Metadata会阻塞</li>
+<li>由于Kafka的模型，Sender线程会处理RecordAccumulator，收集器的默认大小32M</li>
+</ol>
+<p><img src="/2021/05/06/Kafka选举导致的问题/image2021-3-3 10_54_13.png" alt="img"></p>
+<p><img src="/2021/05/06/Kafka选举导致的问题/image2021-3-3 11_0_1.png" alt="img"></p>
+<p> <img src="/2021/05/06/Kafka选举导致的问题/image2021-3-3 11_5_31.png" alt="img"></p>
+<p>修改方案：</p>
+<ol>
+<li>acks=1和retries=0参数矛盾，需查看retries代码是否会阻塞，印象中是扔到收集器后返回。</li>
+<li>业务调用代码改成异步线程，send方法采用回调函数机制（应对第一次拉取Metadata卡住）</li>
+<li>收集器容量塞满，目前是默认60s阻塞</li>
+</ol>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="https://flyingglass.github.io/2021/05/06/Kafka选举导致的问题/" data-id="clft37r2y00083cuyrhsv8u8b" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -2041,7 +1859,7 @@
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Mesh/">Mesh</a></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/架构之路/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/架构之路/Mesh/">Mesh</a></p>
                             <p class="item-title"><a href="/2023/03/28/mesh下Gateway落地/" class="title">mesh下Gateway落地</a></p>
                             <p class="item-date"><time datetime="2023-03-28T07:04:17.000Z" itemprop="datePublished">2023-03-28</time></p>
                         </div>
@@ -2060,7 +1878,7 @@
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Mesh/">Mesh</a></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/架构之路/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/架构之路/Mesh/">Mesh</a></p>
                             <p class="item-title"><a href="/2023/03/23/mesh腾讯云物理架构/" class="title">mesh腾讯云物理架构</a></p>
                             <p class="item-date"><time datetime="2023-03-23T08:19:21.000Z" itemprop="datePublished">2023-03-23</time></p>
                         </div>
@@ -2079,7 +1897,7 @@
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Mesh/">Mesh</a></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/架构之路/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/架构之路/Mesh/">Mesh</a></p>
                             <p class="item-title"><a href="/2023/03/22/mesh与cvm的对比/" class="title">mesh与cvm的对比</a></p>
                             <p class="item-date"><time datetime="2023-03-22T06:52:41.000Z" itemprop="datePublished">2023-03-22</time></p>
                         </div>
@@ -2098,7 +1916,7 @@
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Mesh/">Mesh</a></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/架构之路/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/架构之路/Mesh/">Mesh</a></p>
                             <p class="item-title"><a href="/2023/03/22/mesh服务改造手册/" class="title">mesh服务改造手册</a></p>
                             <p class="item-date"><time datetime="2023-03-22T06:40:58.000Z" itemprop="datePublished">2023-03-22</time></p>
                         </div>
@@ -2107,7 +1925,7 @@
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2022/06/26/腾讯2021年报（上）/" class="thumbnail">
+                            <a href="/2021/09/14/jmx远程调试/" class="thumbnail">
     
     
         <span class="thumbnail-image thumbnail-none"></span>
@@ -2117,9 +1935,9 @@
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/腾讯/">腾讯</a></p>
-                            <p class="item-title"><a href="/2022/06/26/腾讯2021年报（上）/" class="title">腾讯2021年报</a></p>
-                            <p class="item-date"><time datetime="2022-06-26T11:26:14.000Z" itemprop="datePublished">2022-06-26</time></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/Web开发/">Web开发</a></p>
+                            <p class="item-title"><a href="/2021/09/14/jmx远程调试/" class="title">jmx远程调试</a></p>
+                            <p class="item-date"><time datetime="2021-09-14T08:44:22.000Z" itemprop="datePublished">2021-09-14</time></p>
                         </div>
                     </li>
                 
@@ -2133,7 +1951,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Docker和K8s/">Docker和K8s</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Lily/">Lily</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mesh/">Mesh</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web开发/">Web开发</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/估值理论/">估值理论</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/区块链/">区块链</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据/">大数据</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/安装配置/">安装配置</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/">架构之路</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/腾讯/">腾讯</a><span class="category-list-count">1</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Docker和K8s/">Docker和K8s</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web开发/">Web开发</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/区块链/">区块链</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据/">大数据</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/安装配置/">安装配置</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/">架构之路</a><span class="category-list-count">13</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/Java/">Java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/Mesh/">Mesh</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/微服务/">微服务</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/问题集锦/">问题集锦</a><span class="category-list-count">4</span></li></ul></li></ul>
         </div>
     </div>
 
@@ -2142,7 +1960,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">六月 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">6</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">6</span></li></ul>
         </div>
     </div>
 

@@ -13,7 +13,7 @@
 <meta property="og:description" content="Mesh改造镜像 容器相关：用于构建镜像，运行容器 Dockerfile 1234567891011FROM mdd-images.tencentcloudcr.com/mdd/alijdk:8.8.9_centosARG PROJ_DIR=/data/tvbcserver/mddWORKDIR $PROJ_DIRCOPY mdd-community-api.jar $PROJ_DIRCOPY s">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://flyingglass.github.io/2023/03/22/mesh服务改造手册/image2023-3-2%2018_36_31.png">
-<meta property="og:updated_time" content="2023-03-23T08:29:01.180Z">
+<meta property="og:updated_time" content="2023-03-29T03:11:25.618Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mesh服务改造手册">
 <meta name="twitter:description" content="Mesh改造镜像 容器相关：用于构建镜像，运行容器 Dockerfile 1234567891011FROM mdd-images.tencentcloudcr.com/mdd/alijdk:8.8.9_centosARG PROJ_DIR=/data/tvbcserver/mddWORKDIR $PROJ_DIRCOPY mdd-community-api.jar $PROJ_DIRCOPY s">
@@ -169,7 +169,7 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                55
+                52
                 <span>文章</span>
             </div>
             <div class="article-info-block">
@@ -224,7 +224,7 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/Mesh/">Mesh</a>
+        <a class="article-category-link" href="/categories/架构之路/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/架构之路/Mesh/">Mesh</a>
     </div>
 
 
@@ -242,7 +242,7 @@
             <h3 id="Mesh改造"><a href="#Mesh改造" class="headerlink" title="Mesh改造"></a>Mesh改造</h3><h4 id="镜像"><a href="#镜像" class="headerlink" title="镜像"></a>镜像</h4><ul>
 <li><p>容器相关：用于构建镜像，运行容器</p>
 <p><code>Dockerfile</code></p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> mdd-images.tencentcloudcr.com/mdd/alijdk:<span class="number">8.8</span>.<span class="number">9</span>_centos</span><br><span class="line"></span><br><span class="line"><span class="keyword">ARG</span> PROJ_DIR=/data/tvbcserver/mdd</span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> <span class="variable">$PROJ_DIR</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> mdd-community-api.jar <span class="variable">$PROJ_DIR</span></span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> start.sh <span class="variable">$PROJ_DIR</span></span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> preStop.sh <span class="variable">$PROJ_DIR</span></span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> chmod +x start.sh &amp;&amp; chmod +x preStop.sh</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CMD</span><span class="bash"> [<span class="string">"/bin/bash"</span>, <span class="string">"-c"</span>, <span class="string">"/data/tvbcserver/mdd/start.sh"</span>]</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> mdd-images.tencentcloudcr.com/mdd/alijdk:<span class="number">8.8</span>.<span class="number">9</span>_centos</span><br><span class="line"></span><br><span class="line"><span class="keyword">ARG</span> PROJ_DIR=/data/tvbcserver/mdd</span><br><span class="line"><span class="keyword">WORKDIR</span> $PROJ_DIR</span><br><span class="line"></span><br><span class="line"><span class="keyword">COPY</span> mdd-community-api.jar $PROJ_DIR</span><br><span class="line"><span class="keyword">COPY</span> start.sh $PROJ_DIR</span><br><span class="line"><span class="keyword">COPY</span> preStop.sh $PROJ_DIR</span><br><span class="line"><span class="keyword">RUN</span> chmod +x start.sh &amp;&amp; chmod +x preStop.sh</span><br><span class="line"></span><br><span class="line"><span class="keyword">CMD</span> ["/bin/bash", "-c", "/data/tvbcserver/mdd/start.sh"]</span><br></pre></td></tr></table></figure>
 <p><code>start.sh</code></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env bash</span></span><br><span class="line"><span class="comment"># logs</span></span><br><span class="line">[[ -d logs ]] || mkdir logs</span><br><span class="line"><span class="comment"># [[ -d logs/app ]] || mkdir -p logs/app</span></span><br><span class="line"><span class="comment"># [[ -d logs/cfs ]] || mkdir -p logs/cfs</span></span><br><span class="line"><span class="comment"># chmod -R 777 logs/mdd-community</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># JAVA_OPTS</span></span><br><span class="line"><span class="keyword">if</span> [ -z <span class="string">"<span class="variable">$JAVA_OPTS</span>"</span> ];<span class="keyword">then</span></span><br><span class="line">  JAVA_OPTS=<span class="string">"<span class="variable">$&#123;JAVA_OPTS&#125;</span> -Xms1g -Xmx1g -Xmn512m -XX:MetaspaceSize=256m -Xss256k"</span></span><br><span class="line">  JAVA_OPTS=<span class="string">"<span class="variable">$&#123;JAVA_OPTS&#125;</span> -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:+UseCMSInitiatingOccupancyOnly -XX:CMSInitiatingOccupancyFraction=70 -XX:+CMSScavengeBeforeRemark -XX:+ParallelRefProcEnabled"</span></span><br><span class="line">  JAVA_OPTS=<span class="string">"<span class="variable">$&#123;JAVA_OPTS&#125;</span> -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=100M -XX:+PrintGCDetails -XX:+PrintGCDateStamps -Xloggc:logs/gc.log -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=logs/oom-error.hprof"</span></span><br><span class="line">  JAVA_OPTS=<span class="string">"<span class="variable">$&#123;JAVA_OPTS&#125;</span> -Djava.net.preferIPv4Stack=true -Duser.timezone=Asia/Shanghai -Dfile.encoding=UTF-8 -DJM.LOG.PATH=logs -DJM.SNAPSHOT.PATH=/data/tvbcserver"</span></span><br><span class="line"><span class="comment">#   JAVA_OPTS="$&#123;JAVA_OPTS&#125; -javaagent:/data/tvbcserver/mdd/mddagent/mdd-agent-starter.jar -Dlily.agent.servlet.enabled=true"</span></span><br><span class="line"><span class="comment">#   JAVA_OPTS="$&#123;JAVA_OPTS&#125; -javaagent:/data/tvbcserver/skywalking/agent/skywalking-agent.jar=collector.backend_service=172.16.80.4:11800,agent.service_name=mdd::mdd-community"</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  JAVA_OPTS=<span class="string">"<span class="variable">$JAVA_OPTS</span>"</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># JAVA_ARGS</span></span><br><span class="line"><span class="keyword">if</span> [ -z <span class="string">"<span class="variable">$JAVA_ARGS</span>"</span> ];<span class="keyword">then</span></span><br><span class="line">  JAVA_ARGS=<span class="string">"--spring.cloud.nacos.discovery.metadata.env=dev --feign.mdd.load-balancer.enabled=false"</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  JAVA_ARGS=<span class="string">"<span class="variable">$JAVA_ARGS</span>"</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">java <span class="variable">$JAVA_OPTS</span> -jar mdd-community-api.jar <span class="variable">$JAVA_ARGS</span></span><br></pre></td></tr></table></figure>
 <p><code>preStop.sh</code>：用于Lily规则修改，用于打通Nacos的CVM集群</p>
@@ -293,7 +293,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2023/03/22/mesh服务改造手册/" data-id="clfrz0hei001zu4uykiv3a6ja" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2023/03/22/mesh服务改造手册/" data-id="clft37r3s001m3cuy6aoyn4xv" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -378,9 +378,9 @@
         </a>
     
     
-        <a href="/2022/06/26/腾讯2021年报（上）/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2021/09/14/jmx远程调试/" id="article-nav-older" class="article-nav-link-wrap">
             <strong class="article-nav-caption">下一篇</strong>
-            <div class="article-nav-title">腾讯2021年报</div>
+            <div class="article-nav-title">jmx远程调试</div>
         </a>
     
 </nav>
@@ -423,7 +423,7 @@
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Mesh/">Mesh</a></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/架构之路/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/架构之路/Mesh/">Mesh</a></p>
                             <p class="item-title"><a href="/2023/03/28/mesh下Gateway落地/" class="title">mesh下Gateway落地</a></p>
                             <p class="item-date"><time datetime="2023-03-28T07:04:17.000Z" itemprop="datePublished">2023-03-28</time></p>
                         </div>
@@ -442,7 +442,7 @@
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Mesh/">Mesh</a></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/架构之路/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/架构之路/Mesh/">Mesh</a></p>
                             <p class="item-title"><a href="/2023/03/23/mesh腾讯云物理架构/" class="title">mesh腾讯云物理架构</a></p>
                             <p class="item-date"><time datetime="2023-03-23T08:19:21.000Z" itemprop="datePublished">2023-03-23</time></p>
                         </div>
@@ -461,7 +461,7 @@
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Mesh/">Mesh</a></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/架构之路/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/架构之路/Mesh/">Mesh</a></p>
                             <p class="item-title"><a href="/2023/03/22/mesh与cvm的对比/" class="title">mesh与cvm的对比</a></p>
                             <p class="item-date"><time datetime="2023-03-22T06:52:41.000Z" itemprop="datePublished">2023-03-22</time></p>
                         </div>
@@ -480,7 +480,7 @@
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Mesh/">Mesh</a></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/架构之路/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/架构之路/Mesh/">Mesh</a></p>
                             <p class="item-title"><a href="/2023/03/22/mesh服务改造手册/" class="title">mesh服务改造手册</a></p>
                             <p class="item-date"><time datetime="2023-03-22T06:40:58.000Z" itemprop="datePublished">2023-03-22</time></p>
                         </div>
@@ -489,7 +489,7 @@
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2022/06/26/腾讯2021年报（上）/" class="thumbnail">
+                            <a href="/2021/09/14/jmx远程调试/" class="thumbnail">
     
     
         <span class="thumbnail-image thumbnail-none"></span>
@@ -499,9 +499,9 @@
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/腾讯/">腾讯</a></p>
-                            <p class="item-title"><a href="/2022/06/26/腾讯2021年报（上）/" class="title">腾讯2021年报</a></p>
-                            <p class="item-date"><time datetime="2022-06-26T11:26:14.000Z" itemprop="datePublished">2022-06-26</time></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/Web开发/">Web开发</a></p>
+                            <p class="item-title"><a href="/2021/09/14/jmx远程调试/" class="title">jmx远程调试</a></p>
+                            <p class="item-date"><time datetime="2021-09-14T08:44:22.000Z" itemprop="datePublished">2021-09-14</time></p>
                         </div>
                     </li>
                 
@@ -515,7 +515,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Docker和K8s/">Docker和K8s</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Lily/">Lily</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mesh/">Mesh</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web开发/">Web开发</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/估值理论/">估值理论</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/区块链/">区块链</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据/">大数据</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/安装配置/">安装配置</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/">架构之路</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/腾讯/">腾讯</a><span class="category-list-count">1</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Docker和K8s/">Docker和K8s</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web开发/">Web开发</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/区块链/">区块链</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据/">大数据</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/安装配置/">安装配置</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/">架构之路</a><span class="category-list-count">13</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/Java/">Java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/Mesh/">Mesh</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/微服务/">微服务</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/问题集锦/">问题集锦</a><span class="category-list-count">4</span></li></ul></li></ul>
         </div>
     </div>
 
@@ -524,7 +524,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">六月 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">6</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">6</span></li></ul>
         </div>
     </div>
 
