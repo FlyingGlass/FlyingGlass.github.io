@@ -25,7 +25,7 @@
 <meta property="og:image" content="https://flyingglass.github.io/2021/05/20/Jedis引发GC问题/1621481201.png">
 <meta property="og:image" content="https://flyingglass.github.io/2021/05/20/Jedis引发GC问题/1621481022.png">
 <meta property="og:image" content="https://flyingglass.github.io/2021/05/20/Jedis引发GC问题/1621481096.png">
-<meta property="og:updated_time" content="2023-03-29T03:20:28.536Z">
+<meta property="og:updated_time" content="2023-03-29T10:49:08.537Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Jedis引发GC问题">
 <meta name="twitter:description" content="背景介绍线上应用经常收到跨服务间SocketTimeout的异常，服务间的调用设置超时时间为500ms，查看Cat监控发现，发生超时异常都伴随着FGC，并且FGC时间都大于500ms，于是决定dump heap镜像。 问题定位分析通过mat查看heap dump镜像，发现Finalizer引用队列在活跃对象占比高达31.43%，猜测可能有泄漏。  进一步分析发现，SocksSocketImpl对象">
@@ -293,7 +293,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2021/05/20/Jedis引发GC问题/" data-id="clftje17j000orsuytw9etzlt" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2021/05/20/Jedis引发GC问题/" data-id="clftkgkhk000au8uy4wjbfbq0" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -617,21 +617,6 @@
 <!-- Custom Scripts -->
 <script src="/js/main.js"></script>
 
-    </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

@@ -18,7 +18,7 @@
 <meta property="og:image" content="https://flyingglass.github.io/2021/05/06/数据库虚引用堆积问题/image2021-2-20%2016_5_23.png">
 <meta property="og:image" content="https://flyingglass.github.io/2021/05/06/数据库虚引用堆积问题/image2021-2-20%2016_6_38.png">
 <meta property="og:image" content="https://flyingglass.github.io/2021/05/06/数据库虚引用堆积问题/1619691072.png">
-<meta property="og:updated_time" content="2023-03-29T03:20:46.026Z">
+<meta property="og:updated_time" content="2023-03-29T10:49:09.131Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库虚引用堆积问题">
 <meta name="twitter:description" content="线上出现FGC占用时间过长的告警，查看GC日志确认FGC达到3.84s  问题描述  通过mat分析dump下来的日志发现，com.mysql.cj.jdbc.AbandonedConnectionCleanupThread 对象占了堆内存的大部分空间.  查看对象是com.mysql.cj.jdbc.AbandonedConnectionCleanupThread$ConnectionFinal">
@@ -334,7 +334,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2021/05/06/数据库虚引用堆积问题/" data-id="clftje19g003hrsuy1ybr071a" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2021/05/06/数据库虚引用堆积问题/" data-id="clftkgkjq003eu8uylrkoagec" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -658,21 +658,6 @@
 <!-- Custom Scripts -->
 <script src="/js/main.js"></script>
 
-    </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
