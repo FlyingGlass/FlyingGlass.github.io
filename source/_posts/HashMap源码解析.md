@@ -2,7 +2,7 @@
 title: HashMap源码解析
 date: 2020-06-30 11:13:45
 categories: 
-- [Java]
+- [架构之路,Java]
 ---
 
 *HashMap是Java中极其频繁的、非常重要的一个集合类，在JDK8改动也比较大，本文主要基于JDK8下HashMap的实现*

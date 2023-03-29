@@ -2,7 +2,7 @@
 title: mesh服务改造手册
 date: 2023-03-22 14:40:58
 categories: 
-- [Mesh]
+- [架构之路,Mesh]
 ---
 
 ### Mesh改造

@@ -2,7 +2,7 @@
 title: mesh与cvm的对比
 date: 2023-03-22 14:52:41
 categories: 
-- [Mesh]
+- [架构之路,Mesh]
 ---
 
 ### Mesh与CVM的对比

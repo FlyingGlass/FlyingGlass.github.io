@@ -2,7 +2,7 @@
 title: mesh下Gateway落地
 date: 2023-03-28 15:04:17
 categories: 
-- [Mesh]
+- [架构之路,Mesh]
 ---
 
 本文主要讨论Istio Ingress Gateway入口方案，网关选型为Istio Ingress Gateway（Envoy网关的一种），部署方式为中心化网关进行部署，在腾讯云落地方式目前主要考虑两种方式：
