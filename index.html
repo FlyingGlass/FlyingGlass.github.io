@@ -291,7 +291,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2023/03/28/mesh下Gateway落地/" data-id="clft37r3l00193cuy3vy0lxfx" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2023/03/28/mesh下Gateway落地/" data-id="clft9y2xv001plcuycqw2zl9j" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -421,7 +421,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2023/03/23/mesh腾讯云物理架构/" data-id="clft37r3o001e3cuyi00tpzuc" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2023/03/23/mesh腾讯云物理架构/" data-id="clft9y2y40021lcuy5x597hn6" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -638,7 +638,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2023/03/22/mesh与cvm的对比/" data-id="clft37r3n001c3cuyvhvin2qx" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2023/03/22/mesh与cvm的对比/" data-id="clft9y2xp001hlcuyhvj6mwew" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -760,7 +760,7 @@
             <h3 id="Mesh改造"><a href="#Mesh改造" class="headerlink" title="Mesh改造"></a>Mesh改造</h3><h4 id="镜像"><a href="#镜像" class="headerlink" title="镜像"></a>镜像</h4><ul>
 <li><p>容器相关：用于构建镜像，运行容器</p>
 <p><code>Dockerfile</code></p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> mdd-images.tencentcloudcr.com/mdd/alijdk:<span class="number">8.8</span>.<span class="number">9</span>_centos</span><br><span class="line"></span><br><span class="line"><span class="keyword">ARG</span> PROJ_DIR=/data/tvbcserver/mdd</span><br><span class="line"><span class="keyword">WORKDIR</span> $PROJ_DIR</span><br><span class="line"></span><br><span class="line"><span class="keyword">COPY</span> mdd-community-api.jar $PROJ_DIR</span><br><span class="line"><span class="keyword">COPY</span> start.sh $PROJ_DIR</span><br><span class="line"><span class="keyword">COPY</span> preStop.sh $PROJ_DIR</span><br><span class="line"><span class="keyword">RUN</span> chmod +x start.sh &amp;&amp; chmod +x preStop.sh</span><br><span class="line"></span><br><span class="line"><span class="keyword">CMD</span> ["/bin/bash", "-c", "/data/tvbcserver/mdd/start.sh"]</span><br></pre></td></tr></table></figure>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> mdd-images.tencentcloudcr.com/mdd/alijdk:<span class="number">8.8</span>.<span class="number">9</span>_centos</span><br><span class="line"></span><br><span class="line"><span class="keyword">ARG</span> PROJ_DIR=/data/tvbcserver/mdd</span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> <span class="variable">$PROJ_DIR</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> mdd-community-api.jar <span class="variable">$PROJ_DIR</span></span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> start.sh <span class="variable">$PROJ_DIR</span></span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> preStop.sh <span class="variable">$PROJ_DIR</span></span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> chmod +x start.sh &amp;&amp; chmod +x preStop.sh</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CMD</span><span class="bash"> [<span class="string">"/bin/bash"</span>, <span class="string">"-c"</span>, <span class="string">"/data/tvbcserver/mdd/start.sh"</span>]</span></span><br></pre></td></tr></table></figure>
 <p><code>start.sh</code></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env bash</span></span><br><span class="line"><span class="comment"># logs</span></span><br><span class="line">[[ -d logs ]] || mkdir logs</span><br><span class="line"><span class="comment"># [[ -d logs/app ]] || mkdir -p logs/app</span></span><br><span class="line"><span class="comment"># [[ -d logs/cfs ]] || mkdir -p logs/cfs</span></span><br><span class="line"><span class="comment"># chmod -R 777 logs/mdd-community</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># JAVA_OPTS</span></span><br><span class="line"><span class="keyword">if</span> [ -z <span class="string">"<span class="variable">$JAVA_OPTS</span>"</span> ];<span class="keyword">then</span></span><br><span class="line">  JAVA_OPTS=<span class="string">"<span class="variable">$&#123;JAVA_OPTS&#125;</span> -Xms1g -Xmx1g -Xmn512m -XX:MetaspaceSize=256m -Xss256k"</span></span><br><span class="line">  JAVA_OPTS=<span class="string">"<span class="variable">$&#123;JAVA_OPTS&#125;</span> -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:+UseCMSInitiatingOccupancyOnly -XX:CMSInitiatingOccupancyFraction=70 -XX:+CMSScavengeBeforeRemark -XX:+ParallelRefProcEnabled"</span></span><br><span class="line">  JAVA_OPTS=<span class="string">"<span class="variable">$&#123;JAVA_OPTS&#125;</span> -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=100M -XX:+PrintGCDetails -XX:+PrintGCDateStamps -Xloggc:logs/gc.log -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=logs/oom-error.hprof"</span></span><br><span class="line">  JAVA_OPTS=<span class="string">"<span class="variable">$&#123;JAVA_OPTS&#125;</span> -Djava.net.preferIPv4Stack=true -Duser.timezone=Asia/Shanghai -Dfile.encoding=UTF-8 -DJM.LOG.PATH=logs -DJM.SNAPSHOT.PATH=/data/tvbcserver"</span></span><br><span class="line"><span class="comment">#   JAVA_OPTS="$&#123;JAVA_OPTS&#125; -javaagent:/data/tvbcserver/mdd/mddagent/mdd-agent-starter.jar -Dlily.agent.servlet.enabled=true"</span></span><br><span class="line"><span class="comment">#   JAVA_OPTS="$&#123;JAVA_OPTS&#125; -javaagent:/data/tvbcserver/skywalking/agent/skywalking-agent.jar=collector.backend_service=172.16.80.4:11800,agent.service_name=mdd::mdd-community"</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  JAVA_OPTS=<span class="string">"<span class="variable">$JAVA_OPTS</span>"</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># JAVA_ARGS</span></span><br><span class="line"><span class="keyword">if</span> [ -z <span class="string">"<span class="variable">$JAVA_ARGS</span>"</span> ];<span class="keyword">then</span></span><br><span class="line">  JAVA_ARGS=<span class="string">"--spring.cloud.nacos.discovery.metadata.env=dev --feign.mdd.load-balancer.enabled=false"</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  JAVA_ARGS=<span class="string">"<span class="variable">$JAVA_ARGS</span>"</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">java <span class="variable">$JAVA_OPTS</span> -jar mdd-community-api.jar <span class="variable">$JAVA_ARGS</span></span><br></pre></td></tr></table></figure>
 <p><code>preStop.sh</code>：用于Lily规则修改，用于打通Nacos的CVM集群</p>
@@ -811,7 +811,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2023/03/22/mesh服务改造手册/" data-id="clft37r3s001m3cuy6aoyn4xv" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2023/03/22/mesh服务改造手册/" data-id="clft9y2y3001zlcuybd9hmizq" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -948,7 +948,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2021/09/14/jmx远程调试/" data-id="clft37r3g000z3cuy9cvayhg7" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2021/09/14/jmx远程调试/" data-id="clft9y2xn001dlcuy7s3vx1gu" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1091,7 +1091,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2021/08/30/lily新手入门/" data-id="clft37r3j00143cuyr5sfkpjh" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2021/08/30/lily新手入门/" data-id="clft9y2xj0018lcuyec67y3a2" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1267,7 +1267,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2021/08/30/lily解决方案/" data-id="clft37r3k00173cuy22kiui1f" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2021/08/30/lily解决方案/" data-id="clft9y2xs001mlcuyom0oodb5" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1440,7 +1440,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2021/08/30/lily概述/" data-id="clft37r3h00123cuy0ifplrfo" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2021/08/30/lily概述/" data-id="clft9y2xl001alcuyfuj9hi31" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1601,7 +1601,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2021/05/20/Jedis引发GC问题/" data-id="clft37r2p00043cuyfef58tl0" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2021/05/20/Jedis引发GC问题/" data-id="clft9y2wv000blcuyhraro267" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1754,7 +1754,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2021/05/06/Kafka选举导致的问题/" data-id="clft37r2y00083cuyrhsv8u8b" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2021/05/06/Kafka选举导致的问题/" data-id="clft9y2wx000dlcuyogziogmk" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
