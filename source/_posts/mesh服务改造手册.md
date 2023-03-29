@@ -157,6 +157,191 @@ categories:
 
   `logback-spring.xml`：日志改造
 
+  ```xml
+  <!-- Logback configuration. See http://logback.qos.ch/manual/index.html -->
+  <configuration scan="true" scanPeriod="10 seconds" debug="false">
+  
+  <!--    k8s专用，主要优先兼容cvm日志，当同时存在cvm和k8s时，无须处理cvm日志清洗和兼容问题-->
+  <!--    so, add additional logback-spring.xml, which can make life easy.-->
+      <springProperty scope="context" name="contextName" source="spring.application.name" defaultValue="mdd-community"/>
+      <springProperty scope="context" name="appDir" source="logback.appDir" defaultValue="logs/app"/>
+      <springProperty scope="context" name="cfsDir" source="logback.cfsDir" defaultValue="logs/cfs"/>
+      <springProperty scope="context" name="cspDir" source="logback.cspDir" defaultValue="logs/csp"/>
+  
+      <contextName>${contextName}</contextName>
+  
+      <property name="FILE_PATTERN" value="%d{HH:mm:ss.SSS} ${CONTEXT_NAME} [%thread] %-5level %logger{5} [%line] | [%X{trace-id}] [%X{span-id}] [%X{l-h-s-group}] [%X{l-h-s-type}] [%X{l-h-s-id}] [%X{l-h-s-address}] [%X{l-h-s-version}] [%X{l-h-s-region}] [%X{l-h-s-env}] [%X{l-h-s-zone}] | %msg%n"/>
+  
+      <appender name="infoAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+          <file>${appDir}/info.log</file>
+          <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+              <fileNamePattern>${appDir}/info-%d{yyyy-MM-dd}_%i.log</fileNamePattern>
+              <maxFileSize>5GB</maxFileSize>
+              <maxHistory>3</maxHistory>
+              <totalSizeCap>15GB</totalSizeCap>
+          </rollingPolicy>
+          <encoder>
+              <pattern>${FILE_PATTERN}</pattern>
+          </encoder>
+          <filter class="ch.qos.logback.classic.filter.LevelFilter">
+              <level>INFO</level>
+              <onMatch>ACCEPT</onMatch>
+              <onMismatch>DENY</onMismatch>
+          </filter>
+      </appender>
+  
+      <appender name="warnAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+          <file>${appDir}/warn.log</file>
+          <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+              <fileNamePattern>${appDir}/warn-%d{yyyy-MM-dd}_%i.log</fileNamePattern>
+              <maxFileSize>1GB</maxFileSize>
+              <maxHistory>7</maxHistory>
+              <totalSizeCap>5GB</totalSizeCap>
+          </rollingPolicy>
+          <encoder>
+              <pattern>${FILE_PATTERN}</pattern>
+          </encoder>
+          <filter class="ch.qos.logback.classic.filter.LevelFilter">
+              <level>WARN</level>
+              <onMatch>ACCEPT</onMatch>
+              <onMismatch>DENY</onMismatch>
+          </filter>
+      </appender>
+  
+      <appender name="errorAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+          <file>${appDir}/error.log</file>
+          <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+              <fileNamePattern>${appDir}/error-%d{yyyy-MM-dd}_%i.log</fileNamePattern>
+              <maxFileSize>1GB</maxFileSize>
+              <maxHistory>10</maxHistory>
+              <totalSizeCap>10GB</totalSizeCap>
+          </rollingPolicy>
+          <encoder>
+              <pattern>${FILE_PATTERN}</pattern>
+          </encoder>
+          <filter class="ch.qos.logback.classic.filter.LevelFilter">
+              <level>ERROR</level>
+              <onMatch>ACCEPT</onMatch>
+              <onMismatch>DENY</onMismatch>
+          </filter>
+      </appender>
+  
+      <root level="INFO">
+          <appender-ref ref="infoAppender"/>
+          <appender-ref ref="warnAppender"/>
+          <appender-ref ref="errorAppender"/>
+      </root>
+  
+  
+  
+      <!-- ============================ Vod Begin ============================ -->
+      <!-- 点播分集接口请求日志-->
+      <appender name="VodAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+          <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+              <fileNamePattern>${cfsDir}/vod-%d{yyyy-MM-dd.HH}_%i.log</fileNamePattern>
+              <maxFileSize>500MB</maxFileSize>
+              <maxHistory>72</maxHistory>
+              <totalSizeCap>5GB</totalSizeCap>
+          </rollingPolicy>
+          <encoder>
+              <pattern>%d{HH:mm:ss.SSS} %msg%n</pattern>
+          </encoder>
+      </appender>
+  
+      <!-- 点播分集接口响应日志-->
+      <appender name="SactionAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+          <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+              <fileNamePattern>${cfsDir}/saction-%d{yyyy-MM-dd.HH}_%i.log</fileNamePattern>
+              <maxFileSize>500MB</maxFileSize>
+              <maxHistory>72</maxHistory>
+              <totalSizeCap>5GB</totalSizeCap>
+          </rollingPolicy>
+          <encoder>
+              <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %msg%n</pattern>
+          </encoder>
+      </appender>
+  
+      <!--    防盗链异步写入cfs-->
+      <appender name="asyncVodAppender" class="ch.qos.logback.classic.AsyncAppender">
+          <appender-ref ref="VodAppender"/>
+          <neverBlock>true</neverBlock>
+          <discardingThreshold>0</discardingThreshold>
+          <queueSize>1024</queueSize>
+      </appender>
+  
+      <!--    防盗链异步写入cfs-->
+      <appender name="asyncSactionAppender" class="ch.qos.logback.classic.AsyncAppender">
+          <appender-ref ref="VodAppender"/>
+          <neverBlock>true</neverBlock>
+          <discardingThreshold>0</discardingThreshold>
+          <queueSize>1024</queueSize>
+      </appender>
+  
+      <logger name="com.pureShare.common.log.VodLog" level="INFO" additivity="false">
+          <appender-ref ref="asyncVodAppender"/>
+      </logger>
+  
+      <logger name="com.pureShare.common.log.SactionLog" level="INFO" additivity="false">
+          <appender-ref ref="asyncSactionAppender"/>
+      </logger>
+      <!-- ============================ Vod End ============================ -->
+  
+      <!-- ============================ Sentinel Begin ============================ -->
+      <appender name="sentinelRecordAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+          <file>${cspDir}/sentinel-record.log</file>
+          <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+              <fileNamePattern>${cspDir}/sentinel-record.log.%d{yyyy-MM-dd}_%i</fileNamePattern>
+              <maxFileSize>50MB</maxFileSize>
+              <maxHistory>7</maxHistory>
+              <totalSizeCap>1GB</totalSizeCap>
+          </rollingPolicy>
+          <encoder>
+              <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %msg%n</pattern>
+          </encoder>
+      </appender>
+  
+      <appender name="sentinelCommandCenterAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+          <file>${cspDir}/sentinel-command-center.log</file>
+          <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+              <fileNamePattern>${cspDir}/sentinel-command-center.log.%d{yyyy-MM-dd}_%i</fileNamePattern>
+              <maxFileSize>50MB</maxFileSize>
+              <maxHistory>7</maxHistory>
+              <totalSizeCap>1GB</totalSizeCap>
+          </rollingPolicy>
+          <encoder>
+              <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %msg%n</pattern>
+          </encoder>
+      </appender>
+  
+      <!--    Sentinel异步共用-->
+      <appender name="asyncSentinelRecordAppender" class="ch.qos.logback.classic.AsyncAppender">
+          <appender-ref ref="sentinelRecordAppender"/>
+          <neverBlock>true</neverBlock>
+          <discardingThreshold>0</discardingThreshold>
+      </appender>
+  
+      <appender name="asyncSentinelCommandCenterAppender" class="ch.qos.logback.classic.AsyncAppender">
+          <appender-ref ref="sentinelCommandCenterAppender"/>
+          <neverBlock>true</neverBlock>
+          <discardingThreshold>0</discardingThreshold>
+      </appender>
+  
+      <!--    参考Sentinel RecordLogLogger-->
+      <logger name="sentinelRecordLogger" level="INFO" additivity="false">
+          <appender-ref ref="asyncSentinelRecordAppender"/>
+      </logger>
+  
+      <!--    参考Sentinel CommandCenterLogLogger-->
+      <logger name="sentinelCommandCenterLogger" level="INFO" additivity="false">
+          <appender-ref ref="asyncSentinelCommandCenterAppender"/>
+      </logger>
+      <!-- ============================ Sentinel End ============================ -->
+  
+  </configuration>  
+  ```
+
+  
+
   ![image2023-3-2 18_36_31](mesh服务改造手册/image2023-3-2 18_36_31.png)
 
 #### POD
